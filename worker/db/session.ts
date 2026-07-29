@@ -1,4 +1,5 @@
 import { SEED_PRODUCTS } from '@shared/catalog-seed';
+import { DEMO_ACCOUNTS, SEED_PASSWORD } from '@shared/demo-accounts';
 import { seedPasswordHash } from '../auth/password';
 
 export const SESSION_COOKIE = 'yarra_sid';
@@ -6,12 +7,8 @@ export const SESSION_COOKIE = 'yarra_sid';
 /** Sessions older than this are swept. Long enough for a slow manual browse. */
 export const SESSION_TTL_MS = 2 * 60 * 60 * 1000;
 
-export const SEED_PASSWORD = 'Password123!';
-
-export const SEED_USERS = [
-  { email: 'admin@yarra.test', name: 'Avery Chen', role: 'admin' as const },
-  { email: 'viewer@yarra.test', name: 'Sam Okafor', role: 'viewer' as const },
-];
+export { SEED_PASSWORD };
+export const SEED_USERS = DEMO_ACCOUNTS;
 
 const PRODUCT_INSERT = `
   INSERT INTO products (

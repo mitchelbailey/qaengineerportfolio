@@ -100,7 +100,7 @@ export function Products() {
                   aria-pressed={category === ''}
                   className={cn(
                     'w-full rounded-md px-2 py-1.5 text-left text-sm transition-colors',
-                    category === '' ? 'bg-accent-subtle font-medium text-accent' : 'text-fg-muted hover:text-fg',
+                    category === '' ? 'bg-accent-subtle font-medium text-accent-text' : 'text-fg-muted hover:text-fg',
                   )}
                 >
                   All products
@@ -117,7 +117,7 @@ export function Products() {
                       className={cn(
                         'flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm transition-colors',
                         category === option
-                          ? 'bg-accent-subtle font-medium text-accent'
+                          ? 'bg-accent-subtle font-medium text-accent-text'
                           : 'text-fg-muted hover:text-fg',
                       )}
                     >

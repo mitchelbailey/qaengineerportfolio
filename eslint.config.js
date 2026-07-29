@@ -48,6 +48,10 @@ export default tseslint.config(
       },
     },
     rules: {
+      // Same escape hatch as the app config: a fixture requested only for its
+      // side effect (e.g. `adminPage` to trigger a login) is legitimately
+      // unused by name.
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'playwright/no-wait-for-timeout': 'error',
       'playwright/no-element-handle': 'error',
       'playwright/no-eval': 'error',

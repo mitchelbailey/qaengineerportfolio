@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useLocation, useNavigate } from 'react-router';
 import type { z } from 'zod';
 import { loginSchema } from '@shared/schemas';
-import { SEED_PASSWORD_HINT, DEMO_ACCOUNTS } from '@/lib/demo-accounts';
+import { DEMO_ACCOUNTS, SEED_PASSWORD as SEED_PASSWORD_HINT } from '@shared/demo-accounts';
 import { useLogin } from '@/lib/admin-queries';
 import { Button } from '@/components/ui/Button';
 import { Alert, Field, Input } from '@/components/ui/primitives';
@@ -102,7 +102,7 @@ export function AdminLogin() {
                   setValue('email', account.email, { shouldValidate: true });
                   setValue('password', SEED_PASSWORD_HINT, { shouldValidate: true });
                 }}
-                className="shrink-0 text-xs font-medium text-accent underline-offset-4 hover:underline"
+                className="shrink-0 text-xs font-medium text-accent-text underline-offset-4 hover:underline"
               >
                 Use
               </button>

@@ -210,6 +210,7 @@ export const productListResponseSchema = z.object({
   categories: z.array(z.object({ category: z.enum(PRODUCT_CATEGORIES), count: z.int().nonnegative() })),
   priceRange: z.object({ minCents: centsSchema, maxCents: centsSchema }),
 });
+export type ProductListResponse = z.infer<typeof productListResponseSchema>;
 
 export const cartItemSchema = z.object({
   id: idSchema,
@@ -287,3 +288,4 @@ export const errorResponseSchema = z.object({
   /** Present on 422 responses: field path -> messages. */
   fieldErrors: z.record(z.string(), z.array(z.string())).optional(),
 });
+export type ErrorResponse = z.infer<typeof errorResponseSchema>;

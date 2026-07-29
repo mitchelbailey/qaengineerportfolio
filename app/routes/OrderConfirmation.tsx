@@ -69,7 +69,7 @@ export function OrderConfirmation() {
             <li key={item.id} data-testid="order-item" className="flex items-center justify-between gap-4 py-4">
               <div>
                 <p className="text-sm font-medium text-fg">
-                  <Link to={`/products/${item.slug}`} className="hover:text-accent">
+                  <Link to={`/products/${item.slug}`} className="hover:text-accent-text">
                     {item.name}
                   </Link>
                 </p>

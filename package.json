@@ -27,6 +27,7 @@
     "test:api": "playwright test --project=api",
     "test:a11y": "playwright test --project=a11y",
     "test:visual": "playwright test --project=visual",
+    "test:visual:update": "playwright test --project=visual --update-snapshots",
     "test:smoke": "playwright test --grep @smoke",
     "test:report": "playwright show-report",
     "verify": "npm run lint && npm run typecheck && npm run test:unit && npm run test"

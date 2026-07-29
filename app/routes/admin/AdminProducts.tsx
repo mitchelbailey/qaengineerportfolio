@@ -174,7 +174,7 @@ export function AdminProducts() {
                           type="button"
                           onClick={() => toggleSort(column.key)}
                           className={cn(
-                            'inline-flex items-center gap-1 hover:text-accent',
+                            'inline-flex items-center gap-1 hover:text-accent-text',
                             active ? 'text-fg' : 'text-fg-muted',
                           )}
                         >
@@ -232,7 +232,7 @@ export function AdminProducts() {
                               setEditing(product);
                               setFormOpen(true);
                             }}
-                            className="text-sm text-fg-muted underline-offset-4 hover:text-accent hover:underline"
+                            className="text-sm text-fg-muted underline-offset-4 hover:text-accent-text hover:underline"
                           >
                             Edit
                           </button>
@@ -242,7 +242,7 @@ export function AdminProducts() {
                               uploadImage.reset();
                               setUploadingFor(product);
                             }}
-                            className="text-sm text-fg-muted underline-offset-4 hover:text-accent hover:underline"
+                            className="text-sm text-fg-muted underline-offset-4 hover:text-accent-text hover:underline"
                           >
                             Image
                           </button>

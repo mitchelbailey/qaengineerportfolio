@@ -151,7 +151,7 @@ export function AdminOrders() {
                           updateStatus.reset();
                           setSelected(order);
                         }}
-                        className="text-sm text-fg-muted underline-offset-4 hover:text-accent hover:underline"
+                        className="text-sm text-fg-muted underline-offset-4 hover:text-accent-text hover:underline"
                       >
                         View
                       </button>

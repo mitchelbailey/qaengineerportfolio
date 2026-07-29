@@ -99,7 +99,7 @@ export function Cart() {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h2 className="text-sm font-medium text-fg">
-                        <Link to={`/products/${item.slug}`} className="hover:text-accent">
+                        <Link to={`/products/${item.slug}`} className="hover:text-accent-text">
                           {item.name}
                         </Link>
                       </h2>
@@ -181,11 +181,11 @@ export function Cart() {
 
             {cart.promoCode ? (
               <div className="mt-4 flex items-center justify-between rounded-md bg-accent-subtle px-3 py-2">
-                <span className="text-sm font-medium text-accent">{cart.promoCode}</span>
+                <span className="text-sm font-medium text-accent-text">{cart.promoCode}</span>
                 <button
                   type="button"
                   onClick={() => removePromo.mutate()}
-                  className="text-xs text-accent underline-offset-4 hover:underline"
+                  className="text-xs text-accent-text underline-offset-4 hover:underline"
                 >
                   Remove
                 </button>

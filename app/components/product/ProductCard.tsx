@@ -33,7 +33,7 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="mt-3 flex flex-1 flex-col">
         <h3 className="font-sans text-sm font-medium text-fg">
-          <Link to={`/products/${product.slug}`} className="hover:text-accent">
+          <Link to={`/products/${product.slug}`} className="hover:text-accent-text">
             {product.name}
           </Link>
         </h3>

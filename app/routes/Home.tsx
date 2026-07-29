@@ -11,7 +11,7 @@ export function Home() {
       <section className="border-b border-border bg-surface-muted">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 md:grid-cols-2 md:items-center md:py-28">
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+            <p className="text-xs font-semibold tracking-[0.2em] text-accent-text uppercase">
               Made in Melbourne
             </p>
             <h1 className="mt-5 text-5xl leading-[1.05] md:text-6xl">
@@ -60,7 +60,7 @@ export function Home() {
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-3xl">Featured this month</h2>
-          <Link to="/products" className="text-sm font-medium text-accent hover:underline">
+          <Link to="/products" className="text-sm font-medium text-accent-text hover:underline">
             View everything
           </Link>
         </div>

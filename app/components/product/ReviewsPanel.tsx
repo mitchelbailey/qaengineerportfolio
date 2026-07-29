@@ -50,7 +50,7 @@ export function ReviewsPanel({ slug }: { slug: string }) {
             <li key={review.id} data-testid="review" className="py-5">
               <div className="flex items-center gap-3">
                 <p className="text-sm font-medium text-fg">{review.author}</p>
-                <p className="text-sm text-accent" aria-label={`${review.rating} out of 5 stars`}>
+                <p className="text-sm text-accent-text" aria-label={`${review.rating} out of 5 stars`}>
                   {'★'.repeat(review.rating)}
                   <span className="text-fg-muted/50">{'★'.repeat(5 - review.rating)}</span>
                 </p>

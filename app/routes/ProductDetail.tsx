@@ -77,13 +77,13 @@ export function ProductDetail() {
       <nav aria-label="Breadcrumb" className="text-sm text-fg-muted">
         <ol className="flex items-center gap-2">
           <li>
-            <Link to="/products" className="hover:text-accent">
+            <Link to="/products" className="hover:text-accent-text">
               Shop
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link to={`/products?category=${product.category}`} className="hover:text-accent">
+            <Link to={`/products?category=${product.category}`} className="hover:text-accent-text">
               {CATEGORY_LABELS[product.category]}
             </Link>
           </li>

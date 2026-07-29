@@ -86,7 +86,7 @@ export function AdminLayout() {
                 className={({ isActive }) =>
                   cn(
                     'inline-block rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                    isActive ? 'bg-accent-subtle text-accent' : 'text-fg-muted hover:text-fg',
+                    isActive ? 'bg-accent-subtle text-accent-text' : 'text-fg-muted hover:text-fg',
                   )
                 }
               >

@@ -15,17 +15,17 @@ export function Footer() {
           <h2 className="font-sans text-xs font-semibold tracking-widest text-fg-muted uppercase">Shop</h2>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link to="/products" className="text-fg-soft hover:text-accent">
+              <Link to="/products" className="text-fg-soft hover:text-accent-text">
                 All products
               </Link>
             </li>
             <li>
-              <Link to="/products?category=coffee" className="text-fg-soft hover:text-accent">
+              <Link to="/products?category=coffee" className="text-fg-soft hover:text-accent-text">
                 Coffee
               </Link>
             </li>
             <li>
-              <Link to="/products?category=ceramics" className="text-fg-soft hover:text-accent">
+              <Link to="/products?category=ceramics" className="text-fg-soft hover:text-accent-text">
                 Ceramics
               </Link>
             </li>
@@ -42,7 +42,7 @@ export function Footer() {
           </p>
           <a
             href="https://github.com"
-            className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+            className="mt-4 inline-block text-sm font-medium text-accent-text hover:underline"
           >
             View the test suite on GitHub
           </a>

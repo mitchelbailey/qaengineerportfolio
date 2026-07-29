@@ -51,6 +51,18 @@
   --accent-hover: var(--terracotta-600);
   --accent-fg: var(--white);
   --accent-subtle: #f6e9e3;
+  /*
+   * A separate, darker shade for *text* set in the accent colour.
+   *
+   * --accent (terracotta-500) is tuned to work as a button background under
+   * white text, not as text itself. Used as text against this app's light
+   * surfaces it fails WCAG AA: 4.26:1 on --surface-muted and 4.11:1 on
+   * --accent-subtle, both short of the 4.5:1 normal-text minimum — found by
+   * the accessibility suite (docs/06-defect-reports/DEF-003), not eyeballed.
+   * --accent-hover (terracotta-600) clears 4.5:1 against every background in
+   * this palette, so it does double duty as the text colour.
+   */
+  --accent-text: var(--accent-hover);
   --secondary: var(--sage-500);
   --success: var(--green-600);
   --warning: var(--amber-600);
@@ -72,6 +84,9 @@
   --accent-hover: var(--terracotta-300);
   --accent-fg: #14120f;
   --accent-subtle: #33211a;
+  /* Dark mode's --accent already clears 4.5:1 on every surface in this
+     palette (5.12:1–5.99:1), so no separate text shade is needed here. */
+  --accent-text: var(--accent);
   --secondary: var(--sage-300);
   --success: #5fa97f;
   --warning: #d9a441;
@@ -95,6 +110,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-fg: var(--accent-fg);
   --color-accent-subtle: var(--accent-subtle);
+  --color-accent-text: var(--accent-text);
   --color-secondary: var(--secondary);
   --color-success: var(--success);
   --color-warning: var(--warning);
