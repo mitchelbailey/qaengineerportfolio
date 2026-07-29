@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm view typescript@5 version)",
+      "PowerShell(npm view '@cloudflare/vite-plugin' peerDependencies --json)",
+      "PowerShell(npm view vitest peerDependencies --json)",
+      "PowerShell(git init -q)",
+      "PowerShell(npm install --no-audit --no-fund 2>&1)",
+      "PowerShell(foreach \\($p in @\\('@cloudflare/workers-types','@radix-ui/react-dropdown-menu','@radix-ui/react-select','@radix-ui/react-slider','@radix-ui/react-toast','@radix-ui/react-tooltip','@radix-ui/react-label','@hookform/resolvers','eslint-plugin-react-hooks','eslint-plugin-react-refresh','globals','jsdom','@types/node','@testing-library/jest-dom','@testing-library/user-event','tailwind-merge','clsx','@vitest/coverage-v8','eslint'\\)\\) { $v = npm view $p version 2>$null; Write-Output \\(\"{0} = {1}\" -f $p, $v\\) })",
+      "PowerShell(npm view '@types/node@22' version)",
+      "PowerShell(npm view 'eslint@9' version)",
+      "PowerShell(npm view eslint-plugin-react-hooks peerDependencies --json)",
+      "PowerShell(npm view typescript-eslint@8.65.0 peerDependencies --json)",
+      "PowerShell(foreach \\($p in @\\('@fontsource-variable/inter','@fontsource-variable/fraunces','@fontsource/instrument-serif','@fontsource-variable/instrument-sans'\\)\\) { $v = npm view $p version 2>$null; Write-Output \\(\"{0} = {1}\" -f $p, $v\\) })",
+      "PowerShell(npm install --no-audit --no-fund --save '@fontsource-variable/inter@^5.3.0' '@fontsource-variable/fraunces@^5.3.0' 2>&1)",
+      "PowerShell(npm install --no-audit --no-fund --save-dev '@eslint/js@^9.39.5' 2>&1)",
+      "PowerShell(npm run typecheck 2>&1)",
+      "PowerShell(npm run test:unit 2>&1)",
+      "PowerShell(npm run lint 2>&1)",
+      "PowerShell(npm run lint 2>&1 | Select-Object -Last 10; Write-Output \"=== starting dev server ===\"; $job = Start-Job -ScriptBlock { Set-Location \"c:\\\\Users\\\\Mitch\\\\Desktop\\\\QAEngineerPortfolio\"; npm run dev 2>&1 }; Start-Sleep -Seconds 25; Receive-Job $job | Select-Object -Last 30; Stop-Job $job -ErrorAction SilentlyContinue; Remove-Job $job -Force -ErrorAction SilentlyContinue)"
+    ]
+  }
+}

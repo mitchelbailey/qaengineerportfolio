@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Yarra &amp; Co. — considered homewares and coffee goods, made and sourced in Melbourne." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Yarra &amp; Co.</title>
+    <script>
+      // Apply the stored theme before first paint. Without this the page flashes
+      // light before React hydrates, which would also make visual baselines flaky.
+      (function () {
+        try {
+          var stored = localStorage.getItem('yarra-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = stored === 'dark' || ((stored === null || stored === 'system') && prefersDark);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {
+          /* localStorage unavailable — fall back to light. */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/app/main.tsx"></script>
+  </body>
+</html>

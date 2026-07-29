@@ -1,0 +1,29 @@
+{
+  /**
+   * The app project: React SPA, shared domain code, and the build/test configs
+   * that live at the repo root.
+   *
+   * Two sibling projects cover the other runtimes, each with its own tsconfig
+   * next to the code it checks so editors resolve them automatically:
+   *   worker/tsconfig.json  — Cloudflare Worker (workerd globals, no DOM)
+   *   tests/tsconfig.json   — Playwright suite (Node globals)
+   *
+   * `npm run typecheck` checks all three.
+   */
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "types": ["vite/client", "node"]
+  },
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "shared/**/*.ts",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "eslint.config.js"
+  ],
+  "exclude": ["playwright.config.ts", "tests/**/*", "worker/**/*"]
+}

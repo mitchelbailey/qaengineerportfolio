@@ -1,0 +1,38 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "yarra-co",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-07-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // A single Worker serves both the React SPA and the /api routes.
+  // `directory` is injected by @cloudflare/vite-plugin — do not set it here.
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "yarra-co-db",
+      // Placeholder is fine for local dev (Miniflare uses a local SQLite file).
+      // Replace with the real ID from `wrangler d1 create yarra-co-db` before deploying.
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+
+  "vars": {
+    // Test-support endpoints under /api/test/*. Safe to leave on: every one of
+    // them is scoped to the caller's own session and cannot touch anyone else's
+    // data. See docs/01-test-strategy.md.
+    "ENABLE_TEST_API": "true",
+    // Artificial latency (ms) applied to API responses so loading states are
+    // real and worth testing. Set to 0 to disable.
+    "SIMULATED_LATENCY_MS": "180"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

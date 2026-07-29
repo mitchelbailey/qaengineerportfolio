@@ -1,0 +1,9 @@
+dist/
+coverage/
+playwright-report/
+blob-report/
+test-results/
+.wrangler/
+node_modules/
+package-lock.json
+tests/**/__screenshots__/

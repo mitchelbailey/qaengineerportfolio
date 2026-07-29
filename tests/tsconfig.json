@@ -1,0 +1,16 @@
+{
+  /* Playwright suite: runs in Node, but drives a browser, so it needs DOM types
+     for anything evaluated in page context. */
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "baseUrl": "..",
+    "paths": {
+      "@shared/*": ["./shared/*"],
+      "@tests/*": ["./tests/*"]
+    }
+  },
+  "include": ["./**/*.ts", "../playwright.config.ts", "../shared/**/*.ts"]
+}
