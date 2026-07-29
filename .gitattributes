@@ -1,0 +1,12 @@
+# Normalise line endings. The repo is authored on Windows but built and tested
+# on Linux in CI; committing CRLF would break shell scripts and make snapshot
+# diffs noisy.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ico binary
