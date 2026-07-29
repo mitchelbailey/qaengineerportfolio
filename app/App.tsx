@@ -8,6 +8,10 @@ import { Cart } from '@/routes/Cart';
 import { Checkout } from '@/routes/Checkout';
 import { OrderConfirmation } from '@/routes/OrderConfirmation';
 import { NotFound } from '@/routes/NotFound';
+import { AdminLayout } from '@/routes/admin/AdminLayout';
+import { AdminLogin } from '@/routes/admin/AdminLogin';
+import { AdminProducts } from '@/routes/admin/AdminProducts';
+import { AdminOrders } from '@/routes/admin/AdminOrders';
 import { ThemeProvider } from '@/lib/theme';
 import { ToastProvider } from '@/components/ui/Toast';
 
@@ -34,6 +38,18 @@ const router = createBrowserRouter([
       { path: 'cart', Component: Cart },
       { path: 'checkout', Component: Checkout },
       { path: 'order/:reference', Component: OrderConfirmation },
+
+      { path: 'admin/login', Component: AdminLogin },
+      {
+        path: 'admin',
+        Component: AdminLayout,
+        children: [
+          { index: true, Component: AdminProducts },
+          { path: 'products', Component: AdminProducts },
+          { path: 'orders', Component: AdminOrders },
+        ],
+      },
+
       { path: '*', Component: NotFound },
     ],
   },

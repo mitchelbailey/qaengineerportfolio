@@ -3,6 +3,7 @@ import { deleteCookie, setCookie } from 'hono/cookie';
 import { loginSchema, type User } from '@shared/schemas';
 import type { AppEnv } from '../types';
 import { ApiError, parseJsonBody } from '../lib/http';
+import { unauthenticatedError } from '../middleware/auth';
 import { verifyPassword } from '../auth/password';
 import { AUTH_COOKIE, AUTH_TTL_MS, signToken } from '../auth/token';
 
@@ -51,6 +52,6 @@ authRoutes.post('/logout', (c) => {
 
 authRoutes.get('/me', (c) => {
   const user = c.get('user');
-  if (!user) throw ApiError.unauthorised('Not signed in');
+  if (!user) throw unauthenticatedError(c.get('authFailure'));
   return c.json({ user });
 });

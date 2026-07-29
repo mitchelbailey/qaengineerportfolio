@@ -3,7 +3,22 @@ import { getCookie } from 'hono/cookie';
 import type { User } from '@shared/schemas';
 import type { AppEnv } from '../types';
 import { ApiError } from '../lib/http';
-import { AUTH_COOKIE, verifyToken } from '../auth/token';
+import { AUTH_COOKIE, verifyToken, type TokenFailure } from '../auth/token';
+
+/**
+ * A 401 that says why.
+ *
+ * `session_expired` is a distinct code from plain `unauthorized` so the client
+ * can show "your session expired, sign in again" rather than a generic prompt —
+ * including after a full page reload, where no client state survives to infer
+ * it from. Reproducible on demand via POST /api/test/session/expire.
+ */
+export function unauthenticatedError(failure: TokenFailure | null): ApiError {
+  if (failure === 'expired') {
+    return new ApiError(401, 'session_expired', 'Your session has expired. Please sign in again.');
+  }
+  return ApiError.unauthorised();
+}
 
 /**
  * Resolves the auth cookie into `c.var.user`, or leaves it null.
@@ -12,11 +27,16 @@ import { AUTH_COOKIE, verifyToken } from '../auth/token';
  * perfectly valid. Enforcement is the job of `requireRole` below.
  */
 export const authMiddleware = createMiddleware<AppEnv>(async (c, next) => {
+  c.set('authFailure', null);
+
   const token = getCookie(c, AUTH_COOKIE);
   if (!token) return next();
 
   const result = await verifyToken(token, c.env.AUTH_SECRET, c.get('sessionId'));
-  if (!result.ok) return next();
+  if (!result.ok) {
+    c.set('authFailure', result.reason);
+    return next();
+  }
 
   const user = await c.env.DB.prepare('SELECT id, email, name, role FROM users WHERE session_id = ? AND id = ?')
     .bind(c.get('sessionId'), result.payload.uid)
@@ -37,7 +57,7 @@ export const authMiddleware = createMiddleware<AppEnv>(async (c, next) => {
 export function requireRole(...roles: Array<'admin' | 'viewer'>) {
   return createMiddleware<AppEnv>(async (c, next) => {
     const user = c.get('user');
-    if (!user) throw ApiError.unauthorised();
+    if (!user) throw unauthenticatedError(c.get('authFailure'));
     if (!roles.includes(user.role)) {
       throw ApiError.forbidden(`This action requires the ${roles.join(' or ')} role`);
     }

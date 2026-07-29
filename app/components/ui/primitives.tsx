@@ -1,4 +1,10 @@
-import { forwardRef, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes } from 'react';
+import {
+  forwardRef,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+  type ReactNode,
+  type SelectHTMLAttributes,
+} from 'react';
 import { formatAud } from '@shared/money';
 import { cn } from '@/lib/cn';
 
@@ -239,24 +245,34 @@ export function EmptyState({
   );
 }
 
-export function Alert({
-  tone = 'danger',
-  title,
-  children,
-  className,
-}: {
+/**
+ * Extends HTMLAttributes so `data-*` attributes reach the DOM.
+ *
+ * This is not incidental. TypeScript does not type-check hyphenated JSX
+ * attributes on custom components, so a `data-testid` passed to a component
+ * that does not forward props is dropped silently — no error, no warning, and
+ * a test selector that simply never matches. Five test hooks were lost to
+ * exactly that here before it was caught. Any component the suite targets
+ * should spread the rest of its props onto the element it renders.
+ */
+interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   tone?: 'danger' | 'warning' | 'success';
   title?: string;
   children: ReactNode;
-  className?: string;
-}) {
+}
+
+export function Alert({ tone = 'danger', title, children, className, ...rest }: AlertProps) {
   const tones = {
     danger: 'border-danger/40 bg-danger/10 text-danger',
     warning: 'border-warning/40 bg-warning/10 text-warning',
     success: 'border-success/40 bg-success/10 text-success',
   };
   return (
-    <div role="alert" className={cn('rounded-md border px-4 py-3 text-sm', tones[tone], className)}>
+    <div
+      role="alert"
+      className={cn('rounded-md border px-4 py-3 text-sm', tones[tone], className)}
+      {...rest}
+    >
       {title ? <p className="font-medium">{title}</p> : null}
       <div className={title ? 'mt-1' : undefined}>{children}</div>
     </div>
