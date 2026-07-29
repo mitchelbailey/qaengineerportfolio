@@ -29,7 +29,13 @@
     "ENABLE_TEST_API": "true",
     // Artificial latency (ms) applied to API responses so loading states are
     // real and worth testing. Set to 0 to disable.
-    "SIMULATED_LATENCY_MS": "180"
+    "SIMULATED_LATENCY_MS": "180",
+    // Share of review-widget requests that fail, simulating a flaky third-party
+    // embed. The suite intercepts this route rather than tolerating the failures.
+    "FLAKY_WIDGET_FAILURE_RATE": "0.3",
+    // Development value only. Production overrides it with:
+    //   wrangler secret put AUTH_SECRET
+    "AUTH_SECRET": "dev-only-insecure-secret-do-not-use-in-production"
   },
 
   "observability": {
