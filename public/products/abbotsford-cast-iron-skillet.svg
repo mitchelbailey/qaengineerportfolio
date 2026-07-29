@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Abbotsford Cast Iron Skillet">
+  <title>Abbotsford Cast Iron Skillet</title>
+  <rect width="400" height="500" fill="#E7E6DF"/>
+  <circle cx="177" cy="420" r="179" fill="#D8D7CC"/>
+  <circle cx="303" cy="107" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(5 200 200)"
+     fill="none" stroke="#474639" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<circle cx="196" cy="222" r="82" />
+    <circle cx="196" cy="222" r="58" />
+    <path d="M278 222 h56 a14 14 0 0 1 14 14 v10" stroke-linecap="round" />
+    <path d="M144 140 l24 34 M196 128 v40 M248 140 l-24 34" stroke-linecap="round" />
+  </g>
+</svg>

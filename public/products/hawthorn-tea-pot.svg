@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Hawthorn Teapot">
+  <title>Hawthorn Teapot</title>
+  <rect width="400" height="500" fill="#EFE7DC"/>
+  <circle cx="213" cy="420" r="126" fill="#E3D7C7"/>
+  <circle cx="267" cy="103" r="46" fill="#B4553C" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-10 200 200)"
+     fill="none" stroke="#5A4636" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M130 190 h140 a70 70 0 0 1 -70 110 a70 70 0 0 1 -70 -110 z" />
+    <path d="M270 214 h34 a30 30 0 0 1 0 60 h-16" />
+    <path d="M130 214 l-42 -34 l6 44" stroke-linejoin="round" />
+    <path d="M164 190 a36 22 0 0 1 72 0" />
+    <path d="M200 150 v18" stroke-linecap="round" />
+  </g>
+</svg>

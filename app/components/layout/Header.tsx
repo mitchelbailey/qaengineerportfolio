@@ -1,4 +1,6 @@
 import { NavLink, Link } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import { cartQuery } from '@/lib/queries';
 import { ThemeToggle } from './ThemeToggle';
 import { cn } from '@/lib/cn';
 
@@ -9,6 +11,9 @@ const navItems = [
 ];
 
 export function Header() {
+  const { data: cart } = useQuery(cartQuery());
+  const itemCount = cart?.totals.itemCount ?? 0;
+
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
@@ -44,10 +49,22 @@ export function Header() {
           <ThemeToggle />
           <Link
             to="/cart"
+            data-testid="cart-link"
+            aria-label={itemCount > 0 ? `Cart, ${itemCount} item${itemCount === 1 ? '' : 's'}` : 'Cart, empty'}
             className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-fg-muted transition-colors hover:bg-surface-muted hover:text-fg"
           >
-            <CartIcon />
-            <span>Cart</span>
+            <span className="relative">
+              <CartIcon />
+              {itemCount > 0 ? (
+                <span
+                  data-testid="cart-count"
+                  className="absolute -top-1.5 -right-2 flex size-4.5 items-center justify-center rounded-full bg-accent text-[0.625rem] font-semibold text-accent-fg tabular-nums"
+                >
+                  {itemCount}
+                </span>
+              ) : null}
+            </span>
+            <span className="hidden sm:inline">Cart</span>
           </Link>
         </div>
       </div>

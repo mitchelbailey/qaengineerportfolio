@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Geelong Decaf — Swiss Water">
+  <title>Geelong Decaf — Swiss Water</title>
+  <rect width="400" height="500" fill="#E9DFD2"/>
+  <circle cx="190" cy="420" r="207" fill="#DCCDBA"/>
+  <circle cx="290" cy="120" r="46" fill="#9E4732" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(4 200 200)"
+     fill="none" stroke="#4E3A2B" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M138 140 h124 a10 10 0 0 1 10 10 v150 a20 20 0 0 1 -20 20 h-104 a20 20 0 0 1 -20 -20 v-150 a10 10 0 0 1 10 -10 z" />
+    <path d="M138 140 l18 -30 h88 l18 30" />
+    <ellipse cx="200" cy="232" rx="30" ry="42" transform="rotate(-24 200 232)" />
+    <path d="M200 190 c-14 28 -14 56 0 84" stroke-linecap="round" />
+  </g>
+</svg>

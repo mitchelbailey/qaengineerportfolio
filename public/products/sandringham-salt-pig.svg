@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Sandringham Salt Pig">
+  <title>Sandringham Salt Pig</title>
+  <rect width="400" height="500" fill="#E7E6DF"/>
+  <circle cx="239" cy="420" r="196" fill="#D8D7CC"/>
+  <circle cx="271" cy="99" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(5 200 200)"
+     fill="none" stroke="#474639" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M120 218 a80 80 0 0 1 160 0 v62 a20 20 0 0 1 -20 20 h-120 a20 20 0 0 1 -20 -20 z" />
+    <path d="M120 218 c34 -34 78 -46 122 -30" />
+    <ellipse cx="168" cy="196" rx="44" ry="30" transform="rotate(-24 168 196)" />
+  </g>
+</svg>

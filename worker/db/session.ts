@@ -54,7 +54,7 @@ export async function seedSession(db: D1Database, sessionId: string, now: number
         product.dimensions,
         product.summary,
         product.description,
-        `/products/${product.slug}.webp`,
+        `/products/${product.slug}.svg`,
         index,
         now,
       ),

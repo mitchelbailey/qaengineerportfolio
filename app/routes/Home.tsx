@@ -1,6 +1,11 @@
 import { Link } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import { featuredProductsQuery } from '@/lib/queries';
+import { ProductCard, ProductCardSkeleton } from '@/components/product/ProductCard';
 
 export function Home() {
+  const { data, isPending } = useQuery(featuredProductsQuery());
+
   return (
     <>
       <section className="border-b border-border bg-surface-muted">
@@ -32,13 +37,39 @@ export function Home() {
             </div>
           </div>
 
-          <div className="aspect-4/3 rounded-xl border border-border bg-linear-to-br from-accent-subtle to-surface" />
+          <div className="grid grid-cols-2 gap-3">
+            {(data?.items ?? []).slice(0, 4).map((product) => (
+              <img
+                key={product.id}
+                src={product.imageUrl}
+                alt=""
+                width={400}
+                height={500}
+                className="aspect-4/5 w-full rounded-lg border border-border object-cover"
+              />
+            ))}
+            {isPending
+              ? Array.from({ length: 4 }, (_, index) => (
+                  <div key={index} className="aspect-4/5 w-full animate-pulse rounded-lg bg-surface" />
+                ))
+              : null}
+          </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <h2 className="text-3xl">Featured this month</h2>
-        <p className="mt-3 text-fg-muted">Product grid arrives in the next build phase.</p>
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-3xl">Featured this month</h2>
+          <Link to="/products" className="text-sm font-medium text-accent hover:underline">
+            View everything
+          </Link>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-9 md:grid-cols-4">
+          {isPending
+            ? Array.from({ length: 4 }, (_, index) => <ProductCardSkeleton key={index} />)
+            : (data?.items ?? []).map((product) => <ProductCard key={product.id} product={product} />)}
+        </div>
       </section>
     </>
   );

@@ -55,7 +55,7 @@ export async function createProduct(
       input.dimensions,
       input.summary,
       input.description,
-      `/products/${input.slug}.webp`,
+      `/products/${input.slug}.svg`,
       (lowest?.lowest ?? 0) - 1,
       now,
     )

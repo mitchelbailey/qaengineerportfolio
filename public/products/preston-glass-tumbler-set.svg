@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Preston Glass Tumbler — Set of 4">
+  <title>Preston Glass Tumbler — Set of 4</title>
+  <rect width="400" height="500" fill="#E3EAEA"/>
+  <circle cx="242" cy="420" r="211" fill="#D2DEDE"/>
+  <circle cx="298" cy="112" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(3 200 200)"
+     fill="none" stroke="#3D4C4C" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M154 142 h92 l-12 168 a14 14 0 0 1 -14 13 h-40 a14 14 0 0 1 -14 -13 z" />
+    <path d="M162 238 h76" />
+    <path d="M268 168 h44 l-6 88 h-32 z" opacity="0.5" />
+  </g>
+</svg>

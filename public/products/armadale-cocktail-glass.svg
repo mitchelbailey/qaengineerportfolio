@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Armadale Coupe — Pair">
+  <title>Armadale Coupe — Pair</title>
+  <rect width="400" height="500" fill="#E3EAEA"/>
+  <circle cx="188" cy="420" r="129" fill="#D2DEDE"/>
+  <circle cx="292" cy="118" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-16 200 200)"
+     fill="none" stroke="#3D4C4C" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M118 140 h164 a82 62 0 0 1 -164 0 z" />
+    <path d="M200 202 v86" />
+    <path d="M156 300 h88" stroke-linecap="round" />
+    <path d="M200 288 c-22 0 -38 6 -44 12 M200 288 c22 0 38 6 44 12" />
+  </g>
+</svg>

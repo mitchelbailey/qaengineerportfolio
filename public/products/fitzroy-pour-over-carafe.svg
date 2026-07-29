@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Fitzroy Pour-Over Carafe">
+  <title>Fitzroy Pour-Over Carafe</title>
+  <rect width="400" height="500" fill="#E3EAEA"/>
+  <circle cx="197" cy="420" r="182" fill="#D2DEDE"/>
+  <circle cx="283" cy="127" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-1 200 200)"
+     fill="none" stroke="#3D4C4C" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M148 128 h104 l-14 172 a26 26 0 0 1 -26 24 h-24 a26 26 0 0 1 -26 -24 z" />
+    <path d="M156 212 h88" />
+    <path d="M252 156 h20 a26 26 0 0 1 0 52 h-24" />
+  </g>
+</svg>

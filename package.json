@@ -12,6 +12,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "wrangler deploy",
+    "generate:images": "node scripts/generate-product-images.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p worker/tsconfig.json --noEmit && tsc -p tests/tsconfig.json --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="St Kilda Pepper Mill">
+  <title>St Kilda Pepper Mill</title>
+  <rect width="400" height="500" fill="#E7E6DF"/>
+  <circle cx="230" cy="420" r="104" fill="#D8D7CC"/>
+  <circle cx="280" cy="90" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-12 200 200)"
+     fill="none" stroke="#474639" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M164 172 h72 l16 138 a14 14 0 0 1 -14 16 h-76 a14 14 0 0 1 -14 -16 z" />
+    <path d="M170 130 h60 v42 h-60 z" />
+    <path d="M200 100 v30" stroke-linecap="round" />
+    <circle cx="200" cy="96" r="10" />
+    <path d="M158 250 h84" />
+  </g>
+</svg>

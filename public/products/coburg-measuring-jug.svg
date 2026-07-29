@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Coburg Measuring Jug">
+  <title>Coburg Measuring Jug</title>
+  <rect width="400" height="500" fill="#E3EAEA"/>
+  <circle cx="198" cy="420" r="126" fill="#D2DEDE"/>
+  <circle cx="312" cy="118" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-16 200 200)"
+     fill="none" stroke="#3D4C4C" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M140 152 h112 v146 a18 18 0 0 1 -18 18 h-76 a18 18 0 0 1 -18 -18 z" />
+    <path d="M140 152 l-22 -14 v34" stroke-linejoin="round" />
+    <path d="M252 186 h26 a26 26 0 0 1 0 52 h-26" />
+    <path d="M166 214 h30 M166 252 h30" stroke-linecap="round" />
+  </g>
+</svg>

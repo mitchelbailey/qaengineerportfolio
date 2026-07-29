@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Williamstown Butter Dish">
+  <title>Williamstown Butter Dish</title>
+  <rect width="400" height="500" fill="#EFE7DC"/>
+  <circle cx="221" cy="420" r="214" fill="#E3D7C7"/>
+  <circle cx="289" cy="121" r="46" fill="#B4553C" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-1 200 200)"
+     fill="none" stroke="#5A4636" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M112 232 h176 v58 a12 12 0 0 1 -12 12 h-152 a12 12 0 0 1 -12 -12 z" />
+    <path d="M112 232 c0 -50 40 -78 88 -78 s88 28 88 78" />
+    <path d="M200 154 v-26" stroke-linecap="round" />
+  </g>
+</svg>

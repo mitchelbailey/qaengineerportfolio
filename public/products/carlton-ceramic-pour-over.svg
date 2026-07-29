@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Carlton Ceramic Pour-Over Cone">
+  <title>Carlton Ceramic Pour-Over Cone</title>
+  <rect width="400" height="500" fill="#EFE7DC"/>
+  <circle cx="207" cy="420" r="187" fill="#E3D7C7"/>
+  <circle cx="273" cy="117" r="46" fill="#B4553C" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-6 200 200)"
+     fill="none" stroke="#5A4636" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M112 150 h176 l-72 130 h-32 z" />
+    <path d="M200 280 v46" />
+    <path d="M150 326 h100" stroke-linecap="round" />
+    <path d="M150 150 l50 130 l50 -130" />
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Thornbury Hand Burr Grinder">
+  <title>Thornbury Hand Burr Grinder</title>
+  <rect width="400" height="500" fill="#E9DFD2"/>
+  <circle cx="194" cy="420" r="94" fill="#DCCDBA"/>
+  <circle cx="316" cy="114" r="46" fill="#9E4732" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-11 200 200)"
+     fill="none" stroke="#4E3A2B" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M152 176 h96 v134 a14 14 0 0 1 -14 14 h-68 a14 14 0 0 1 -14 -14 z" />
+    <path d="M146 146 h108 v30 h-108 z" />
+    <path d="M200 146 v-28" stroke-linecap="round" />
+    <path d="M200 118 h44 a16 16 0 0 1 16 16" stroke-linecap="round" />
+    <path d="M152 250 h96" />
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Malvern Wooden Spoon Set">
+  <title>Malvern Wooden Spoon Set</title>
+  <rect width="400" height="500" fill="#E7E6DF"/>
+  <circle cx="190" cy="420" r="138" fill="#D8D7CC"/>
+  <circle cx="320" cy="110" r="46" fill="#6E7F68" opacity="0.14"/>
+  <g transform="translate(0 44) rotate(-7 200 200)"
+     fill="none" stroke="#474639" stroke-width="7" stroke-linejoin="round" opacity="0.85">
+<path d="M150 300 l52 -128" stroke-linecap="round" />
+    <ellipse cx="212" cy="146" rx="26" ry="38" transform="rotate(22 212 146)" />
+    <path d="M250 300 l-30 -110" stroke-linecap="round" />
+    <ellipse cx="214" cy="164" rx="18" ry="30" transform="rotate(-14 214 164)" opacity="0.45" />
+  </g>
+</svg>
