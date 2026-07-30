@@ -15,7 +15,7 @@ export class ProductsPage extends BasePage {
   readonly pagination = this.page.getByRole('navigation', { name: 'Pagination' });
 
   categoryOption(label: string) {
-    return this.page.getByRole('button', { name: label, exact: true });
+    return this.page.getByRole('button', { name: new RegExp(`^${label}`) });
   }
 
   cardBySlug(slug: string) {
