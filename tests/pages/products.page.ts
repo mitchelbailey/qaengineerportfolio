@@ -35,12 +35,17 @@ export class ProductsPage extends BasePage {
    * settled *and* the resulting fetch has resolved, which is the actual
    * condition a spec cares about.
    */
-  async search(term: string) {
-    await this.searchInput.fill(term);
+  
+  private async waitForGridToSettle() {
     await this.grid.waitFor();
     await this.page.waitForFunction(
       () => document.querySelector('[data-testid="product-grid"]')?.getAttribute('data-loading') === 'false',
     );
+  }
+
+  async search(term: string) {
+    await this.searchInput.fill(term);
+    await this.waitForGridToSettle();
   }
 
   async selectCategory(label: string) {
@@ -54,4 +59,22 @@ export class ProductsPage extends BasePage {
   async goToPage(pageNumber: number) {
     await this.pagination.getByRole('button', { name: String(pageNumber), exact: true }).click();
   }
+  
+  async setPriceRange(min?: string, max?: string) {
+    if (min !== undefined) {
+      await this.minPriceInput.fill(min);
+      await this.minPriceInput.blur();
+    }
+    if (max !== undefined) {
+      await this.maxPriceInput.fill(max);
+      await this.maxPriceInput.blur();
+    }
+    await this.waitForGridToSettle();
+  }
+
+  async checkInStockOnly() {
+    await this.inStockOnlyCheckbox.click();
+    await this.waitForGridToSettle();
+  }
+
 }
