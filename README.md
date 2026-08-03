@@ -41,6 +41,7 @@ development and production are the same stack rather than a mock of it.
 | `npm run lint` | ESLint, including the Playwright anti-flake rules |
 | `npm run test:unit` | Vitest unit and component tests |
 | `npm test` | Playwright suite |
+| `npm test:ui` | Visual Playwright UI |
 | `npm run verify` | Everything above, in order |
 
 ## Repository layout

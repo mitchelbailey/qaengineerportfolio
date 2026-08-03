@@ -33,4 +33,8 @@ export class CartPage extends BasePage {
   async removeItem(slug: string) {
     await this.itemBySlug(slug).getByRole('button', { name: 'Remove' }).click();
   }
+
+  quantityFor(slug: string) {
+    return this.itemBySlug(slug).getByRole('status', { name: /^Quantity/ });
+  }
 }

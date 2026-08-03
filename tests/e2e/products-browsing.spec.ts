@@ -30,7 +30,7 @@ test.describe('browse products', () => {
  
     const expected = SEED_PRODUCTS.filter((p) => p.category === 'ceramics').map((p) => p.slug).sort();
     await expect(productsPage.cards).toHaveCount(expected.length); // waits for the grid to settle
-    expect(expected.length).toBe(6);
+    expect(expected).toHaveLength(6);
 
     const actual = await slugsOnPage(productsPage);
     expect(actual).toEqual(expected);
@@ -96,11 +96,11 @@ test.describe('browse products', () => {
 
     await productsPage.sortBy('Price: low to high');
 
-    const slugsInOrder = await productsPage.cards.evaluateAll((cards) => cards.map((c) => c.getAttribute('data-slug')));
-    const actualPrices = slugsInOrder.map((slug) => SEED_PRODUCTS.find((p) => p.slug === slug)!.priceCents);
-    const expectedPrices = [...actualPrices].sort((a, b) => a - b);
-
-    expect(actualPrices).toEqual(expectedPrices);
+    await expect(async () => {
+      const slugsInOrder = await productsPage.cards.evaluateAll((cards) => cards.map((c) => c.getAttribute('data-slug')));
+      const prices = slugsInOrder.map((slug) => SEED_PRODUCTS.find((p) => p.slug === slug)!.priceCents);
+      expect(prices).toEqual([...prices].sort((a, b) => a - b));
+    }).toPass();
   });
 
   test("TC-025 | a price filter with no matches shows an empty state, not a stale grid", async({ api, productsPage }) => {
@@ -122,12 +122,12 @@ test.describe('browse products', () => {
     
     const pageOneSlugs = await slugsOnPage(productsPage);
     await productsPage.goToPage(2);
-    
-    const pageTwoSlugs = await slugsOnPage(productsPage);
-    
-    expect(pageOneSlugs).not.toEqual(pageTwoSlugs);
+   
+    await expect(async () => {
+      const pageTwoSlugs = await slugsOnPage(productsPage);
+      expect(pageOneSlugs).not.toEqual(pageTwoSlugs);
+    }).toPass();
   });
-
 
 });
 

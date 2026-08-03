@@ -51,6 +51,7 @@ export class ProductsPage extends BasePage {
 
   async selectCategory(label: string) {
     await this.categoryOption(label).click();
+    await this.waitForGridToSettle();
   }
 
   async sortBy(label: string) {
