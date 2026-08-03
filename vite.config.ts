@@ -25,6 +25,13 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    watch: {
+      // Playwright rewrites files here mid-run (report generation, trace
+      // viewer). Vite's chokidar watcher isn't needed for these dirs and on
+      // Windows a file swap mid-watch throws an uncaught EBUSY that crashes
+      // the whole dev server.
+      ignored: ['**/playwright-report/**', '**/test-results/**', '**/blob-report/**'],
+    },
   },
   preview: {
     port: 4173,

@@ -7,6 +7,7 @@ export class ProductsPage extends BasePage {
   readonly maxPriceInput = this.page.getByLabel('Maximum price');
   readonly inStockOnlyCheckbox = this.page.getByLabel('In stock only');
   readonly clearFiltersButton = this.page.getByRole('button', { name: 'Clear all filters' });
+  readonly noProductsResultsText = this.page.getByText("No products match those filters");
 
   readonly resultCount = this.page.getByTestId('result-count');
   readonly grid = this.page.getByTestId('product-grid');
@@ -24,6 +25,7 @@ export class ProductsPage extends BasePage {
 
   async goto(query = '') {
     await this.page.goto(`/products${query}`);
+    await this.waitForGridToSettle();
   }
 
   /**
@@ -37,9 +39,8 @@ export class ProductsPage extends BasePage {
    */
   
   private async waitForGridToSettle() {
-    await this.grid.waitFor();
     await this.page.waitForFunction(
-      () => document.querySelector('[data-testid="product-grid"]')?.getAttribute('data-loading') === 'false',
+      () => document.querySelector('[data-testid="result-count"]')?.getAttribute('data-loading') === 'false',
     );
   }
 
@@ -54,10 +55,12 @@ export class ProductsPage extends BasePage {
 
   async sortBy(label: string) {
     await this.sortSelect.selectOption({ label });
+    await this.waitForGridToSettle();
   }
 
   async goToPage(pageNumber: number) {
     await this.pagination.getByRole('button', { name: String(pageNumber), exact: true }).click();
+    await this.waitForGridToSettle();
   }
   
   async setPriceRange(min?: string, max?: string) {
@@ -74,6 +77,11 @@ export class ProductsPage extends BasePage {
 
   async checkInStockOnly() {
     await this.inStockOnlyCheckbox.click();
+    await this.waitForGridToSettle();
+  }
+
+  async clearFilters() {
+    await this.clearFiltersButton.click();
     await this.waitForGridToSettle();
   }
 
