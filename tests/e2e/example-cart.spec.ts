@@ -44,7 +44,11 @@ test.describe('cart pricing @smoke', () => {
     await expect(cartPage.total).toHaveText('$88.55');
   });
 
-  test('TC-016 | an unknown promo code is rejected with a specific message', async ({ api, cartPage, page }) => {
+  test('TC-016 | an unknown promo code is rejected with a specific message', async ({
+    api,
+    cartPage,
+    page,
+  }) => {
     await api.reset();
     await api.addToCart('brunswick-stoneware-mug', 1);
 
@@ -57,7 +61,11 @@ test.describe('cart pricing @smoke', () => {
     await expect(page.getByRole('alert')).toContainText('not recognised');
   });
 
-  test('TC-017 | an expired promo code is rejected as expired, not unknown', async ({ api, cartPage, page }) => {
+  test('TC-017 | an expired promo code is rejected as expired, not unknown', async ({
+    api,
+    cartPage,
+    page,
+  }) => {
     await api.reset();
     await api.addToCart('brunswick-stoneware-mug', 1);
 

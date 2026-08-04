@@ -154,7 +154,11 @@ export function ProductFormModal({ open, onOpenChange, product }: ProductFormMod
 
         <div className="grid gap-x-5 sm:grid-cols-2">
           <Field label="Name" htmlFor="product-name" error={errors.name?.message}>
-            <Input id="product-name" invalid={Boolean(errors.name)} {...register('name', { required: 'Name is required' })} />
+            <Input
+              id="product-name"
+              invalid={Boolean(errors.name)}
+              {...register('name', { required: 'Name is required' })}
+            />
           </Field>
 
           <Field
@@ -163,7 +167,11 @@ export function ProductFormModal({ open, onOpenChange, product }: ProductFormMod
             hint="Lowercase words joined by hyphens"
             error={errors.slug?.message}
           >
-            <Input id="product-slug" invalid={Boolean(errors.slug)} {...register('slug', { required: 'Slug is required' })} />
+            <Input
+              id="product-slug"
+              invalid={Boolean(errors.slug)}
+              {...register('slug', { required: 'Slug is required' })}
+            />
           </Field>
 
           <Field label="Category" htmlFor="product-category" error={errors.category?.message}>
@@ -193,7 +201,10 @@ export function ProductFormModal({ open, onOpenChange, product }: ProductFormMod
                 type="number"
                 min={0}
                 invalid={Boolean(errors.stock)}
-                {...register('stock', { valueAsNumber: true, min: { value: 0, message: 'Stock cannot be negative' } })}
+                {...register('stock', {
+                  valueAsNumber: true,
+                  min: { value: 0, message: 'Stock cannot be negative' },
+                })}
               />
             </Field>
           </div>

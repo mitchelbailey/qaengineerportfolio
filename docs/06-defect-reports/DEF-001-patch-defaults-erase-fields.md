@@ -1,21 +1,21 @@
 # DEF-001 — Partial product update silently erases fields the caller did not send
 
-| | |
-|---|---|
-| **Reported** | 2026-07-28 |
-| **Reported by** | Mitchel Bailey |
-| **Component** | API — `PATCH /api/admin/products/:id` |
-| **Severity** | **S1 — Major** (silent data loss, no error surfaced) |
-| **Priority** | **P1** (fix before the admin UI is built on top of it) |
-| **Status** | Closed — fixed and covered by a regression test |
-| **Found during** | API smoke exercise of the phase 2 endpoints |
-| **Environment** | Local dev, `npm run dev`, Node 24.18.0, Vite 8.1.5 + `@cloudflare/vite-plugin`, Zod 4.4.3 |
+|                  |                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| **Reported**     | 2026-07-28                                                                                |
+| **Reported by**  | Mitchel Bailey                                                                            |
+| **Component**    | API — `PATCH /api/admin/products/:id`                                                     |
+| **Severity**     | **S1 — Major** (silent data loss, no error surfaced)                                      |
+| **Priority**     | **P1** (fix before the admin UI is built on top of it)                                    |
+| **Status**       | Closed — fixed and covered by a regression test                                           |
+| **Found during** | API smoke exercise of the phase 2 endpoints                                               |
+| **Environment**  | Local dev, `npm run dev`, Node 24.18.0, Vite 8.1.5 + `@cloudflare/vite-plugin`, Zod 4.4.3 |
 
 ## Summary
 
 A partial update carrying a single field silently reset `featured`, `material`
 and `dimensions` to their default values. No error was returned; the endpoint
-responded `200 OK` with a body that looked correct for the field that *was*
+responded `200 OK` with a body that looked correct for the field that _was_
 sent, which is what makes this hard to spot from the client side.
 
 Separately, an update with an empty body `{}` was accepted with `200 OK` instead
@@ -54,7 +54,7 @@ empty_update`.
 The update schema was derived from the create schema with `.partial()`:
 
 ```ts
-adminProductInputSchema.partial()   // the defect
+adminProductInputSchema.partial(); // the defect
 ```
 
 The create schema legitimately carries defaults for the optional-on-create
@@ -71,15 +71,17 @@ the default from firing. It does not — in Zod 4 the default is still applied
 when the key is absent. Verified directly:
 
 ```js
-const partial = z.object({
-  name: z.string(),
-  featured: z.boolean().default(false),
-  material: z.string().default(''),
-  priceCents: z.int(),
-}).partial();
+const partial = z
+  .object({
+    name: z.string(),
+    featured: z.boolean().default(false),
+    material: z.string().default(''),
+    priceCents: z.int(),
+  })
+  .partial();
 
-partial.parse({})                  // => { featured: false, material: '' }
-partial.parse({ priceCents: 6500 })// => { featured: false, material: '', priceCents: 6500 }
+partial.parse({}); // => { featured: false, material: '' }
+partial.parse({ priceCents: 6500 }); // => { featured: false, material: '', priceCents: 6500 }
 ```
 
 Because the parsed object then contained those keys, the SQL builder in
@@ -96,12 +98,12 @@ empty_update` never triggered.
 defaults are now attached only by the create schema:
 
 ```ts
-const productFields = { /* …no .default() anywhere… */ };
+const productFields = {/* …no .default() anywhere… */};
 
 export const adminProductInputSchema = z.object({
   ...productFields,
-  featured:   productFields.featured.default(false),
-  material:   productFields.material.default(''),
+  featured: productFields.featured.default(false),
+  material: productFields.material.default(''),
   dimensions: productFields.dimensions.default(''),
 });
 

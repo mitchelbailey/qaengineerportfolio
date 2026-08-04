@@ -49,8 +49,7 @@ export function AdminProducts() {
     const term = search.trim().toLowerCase();
     const filtered = term
       ? all.filter(
-          (product) =>
-            product.name.toLowerCase().includes(term) || product.slug.toLowerCase().includes(term),
+          (product) => product.name.toLowerCase().includes(term) || product.slug.toLowerCase().includes(term),
         )
       : all;
 
@@ -338,9 +337,7 @@ export function AdminProducts() {
           onChange={(event) => handleFileChosen(event.target.files?.[0])}
           className="mt-2 block w-full text-sm text-fg-muted file:mr-3 file:rounded-md file:border file:border-border-strong file:bg-surface file:px-3 file:py-2 file:text-sm file:font-medium file:text-fg"
         />
-        <p className="mt-2 text-xs text-fg-muted">
-          JPEG, PNG or WebP, up to {formatBytes(MAX_IMAGE_BYTES)}.
-        </p>
+        <p className="mt-2 text-xs text-fg-muted">JPEG, PNG or WebP, up to {formatBytes(MAX_IMAGE_BYTES)}.</p>
 
         {uploadImage.isPending ? <p className="mt-4 text-sm text-fg-muted">Uploading…</p> : null}
 

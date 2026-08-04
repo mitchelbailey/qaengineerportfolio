@@ -17,11 +17,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
-        <Link
-          to="/"
-          className="font-display text-xl tracking-tight text-fg"
-          aria-label="Yarra and Co. home"
-        >
+        <Link to="/" className="font-display text-xl tracking-tight text-fg" aria-label="Yarra and Co. home">
           Yarra&nbsp;&amp;&nbsp;Co.
         </Link>
 
@@ -50,7 +46,9 @@ export function Header() {
           <Link
             to="/cart"
             data-testid="cart-link"
-            aria-label={itemCount > 0 ? `Cart, ${itemCount} item${itemCount === 1 ? '' : 's'}` : 'Cart, empty'}
+            aria-label={
+              itemCount > 0 ? `Cart, ${itemCount} item${itemCount === 1 ? '' : 's'}` : 'Cart, empty'
+            }
             className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-fg-muted transition-colors hover:bg-surface-muted hover:text-fg"
           >
             <span className="relative">
@@ -74,8 +72,19 @@ export function Header() {
 
 function CartIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.55L20.5 8H6" />
+    <svg
+      viewBox="0 0 24 24"
+      className="size-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.55L20.5 8H6"
+      />
       <circle cx="10" cy="20" r="1.25" />
       <circle cx="17" cy="20" r="1.25" />
     </svg>

@@ -37,10 +37,14 @@ export function ReviewsPanel({ slug }: { slug: string }) {
           className="mt-6 rounded-lg border border-border bg-surface-muted px-5 py-8 text-center"
         >
           <p className="text-sm text-fg">Reviews are unavailable right now.</p>
-          <p className="mt-1 text-sm text-fg-muted">
-            This does not affect your ability to order.
-          </p>
-          <Button variant="secondary" size="sm" className="mt-4" loading={isFetching} onClick={() => void refetch()}>
+          <p className="mt-1 text-sm text-fg-muted">This does not affect your ability to order.</p>
+          <Button
+            variant="secondary"
+            size="sm"
+            className="mt-4"
+            loading={isFetching}
+            onClick={() => void refetch()}
+          >
             Try again
           </Button>
         </div>

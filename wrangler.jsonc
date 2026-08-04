@@ -9,7 +9,7 @@
   // `directory` is injected by @cloudflare/vite-plugin — do not set it here.
   "assets": {
     "binding": "ASSETS",
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "single-page-application",
   },
 
   "d1_databases": [
@@ -18,8 +18,8 @@
       "database_name": "yarra-co-db",
       // Placeholder is fine for local dev (Miniflare uses a local SQLite file).
       // Replace with the real ID from `wrangler d1 create yarra-co-db` before deploying.
-      "database_id": "00000000-0000-0000-0000-000000000000"
-    }
+      "database_id": "00000000-0000-0000-0000-000000000000",
+    },
   ],
 
   "vars": {
@@ -35,10 +35,10 @@
     "FLAKY_WIDGET_FAILURE_RATE": "0.3",
     // Development value only. Production overrides it with:
     //   wrangler secret put AUTH_SECRET
-    "AUTH_SECRET": "dev-only-insecure-secret-do-not-use-in-production"
+    "AUTH_SECRET": "dev-only-insecure-secret-do-not-use-in-production",
   },
 
   "observability": {
-    "enabled": true
-  }
+    "enabled": true,
+  },
 }

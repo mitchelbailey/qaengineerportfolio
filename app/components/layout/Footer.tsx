@@ -37,8 +37,8 @@ export function Footer() {
             About this site
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-fg-muted">
-            This is a demonstration application built as the target for a production-grade Playwright
-            test suite. No real orders are placed and no payment details are collected.
+            This is a demonstration application built as the target for a production-grade Playwright test
+            suite. No real orders are placed and no payment details are collected.
           </p>
           <a
             href="https://github.com"

@@ -129,7 +129,8 @@ export function useUploadProductImage() {
 export function useUpdateOrderStatus() {
   const queryClient = useQueryClient();
   return useMutation<Order, ApiRequestError, { id: string; status: OrderStatus }>({
-    mutationFn: ({ id, status }) => apiFetch(`/api/admin/orders/${id}`, { method: 'PATCH', json: { status } }),
+    mutationFn: ({ id, status }) =>
+      apiFetch(`/api/admin/orders/${id}`, { method: 'PATCH', json: { status } }),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['admin', 'orders'] });
       // Cancelling or refunding returns stock to the catalog.

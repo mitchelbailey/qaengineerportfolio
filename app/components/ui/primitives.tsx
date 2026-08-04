@@ -126,40 +126,42 @@ export function Field({ label, htmlFor, error, hint, children, className }: Fiel
   );
 }
 
-export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement> & { invalid?: boolean }>(
-  function Input({ className, invalid, ...props }, ref) {
-    return (
-      <input
-        ref={ref}
-        aria-invalid={invalid || undefined}
-        className={cn(
-          'h-11 w-full rounded-md border bg-surface px-3 text-sm text-fg',
-          'placeholder:text-fg-muted/70',
-          invalid ? 'border-danger' : 'border-border-strong',
-          className,
-        )}
-        {...props}
-      />
-    );
-  },
-);
+export const Input = forwardRef<
+  HTMLInputElement,
+  InputHTMLAttributes<HTMLInputElement> & { invalid?: boolean }
+>(function Input({ className, invalid, ...props }, ref) {
+  return (
+    <input
+      ref={ref}
+      aria-invalid={invalid || undefined}
+      className={cn(
+        'h-11 w-full rounded-md border bg-surface px-3 text-sm text-fg',
+        'placeholder:text-fg-muted/70',
+        invalid ? 'border-danger' : 'border-border-strong',
+        className,
+      )}
+      {...props}
+    />
+  );
+});
 
-export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement>>(
-  function Select({ className, children, ...props }, ref) {
-    return (
-      <select
-        ref={ref}
-        className={cn(
-          'h-11 w-full rounded-md border border-border-strong bg-surface px-3 text-sm text-fg',
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </select>
-    );
-  },
-);
+export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement>>(function Select(
+  { className, children, ...props },
+  ref,
+) {
+  return (
+    <select
+      ref={ref}
+      className={cn(
+        'h-11 w-full rounded-md border border-border-strong bg-surface px-3 text-sm text-fg',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </select>
+  );
+});
 
 /* -------------------------------------------------------------------------- */
 /* Quantity stepper                                                            */
@@ -201,7 +203,14 @@ export function QuantityStepper({
         onClick={() => onChange(value - 1)}
         className="flex size-10 items-center justify-center text-fg-muted transition-colors hover:text-fg disabled:opacity-40"
       >
-        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          className="size-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          aria-hidden="true"
+        >
           <path strokeLinecap="round" d="M5 12h14" />
         </svg>
       </button>
@@ -215,7 +224,14 @@ export function QuantityStepper({
         onClick={() => onChange(value + 1)}
         className="flex size-10 items-center justify-center text-fg-muted transition-colors hover:text-fg disabled:opacity-40"
       >
-        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          className="size-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          aria-hidden="true"
+        >
           <path strokeLinecap="round" d="M12 5v14M5 12h14" />
         </svg>
       </button>
@@ -268,11 +284,7 @@ export function Alert({ tone = 'danger', title, children, className, ...rest }: 
     success: 'border-success/40 bg-success/10 text-success',
   };
   return (
-    <div
-      role="alert"
-      className={cn('rounded-md border px-4 py-3 text-sm', tones[tone], className)}
-      {...rest}
-    >
+    <div role="alert" className={cn('rounded-md border px-4 py-3 text-sm', tones[tone], className)} {...rest}>
       {title ? <p className="font-medium">{title}</p> : null}
       <div className={title ? 'mt-1' : undefined}>{children}</div>
     </div>
@@ -314,7 +326,9 @@ export function Pagination({
           aria-current={candidate === page ? 'page' : undefined}
           className={cn(
             'size-10 rounded-md text-sm font-medium transition-colors',
-            candidate === page ? 'bg-accent text-accent-fg' : 'text-fg-muted hover:bg-surface-muted hover:text-fg',
+            candidate === page
+              ? 'bg-accent text-accent-fg'
+              : 'text-fg-muted hover:bg-surface-muted hover:text-fg',
           )}
         >
           {candidate}

@@ -207,7 +207,11 @@ export function Checkout() {
               />
             </Field>
 
-            <Field label="Apartment, unit (optional)" htmlFor="line2" error={errors.shippingAddress?.line2?.message}>
+            <Field
+              label="Apartment, unit (optional)"
+              htmlFor="line2"
+              error={errors.shippingAddress?.line2?.message}
+            >
               <Input id="line2" autoComplete="address-line2" {...register('shippingAddress.line2')} />
             </Field>
 
@@ -260,7 +264,12 @@ export function Checkout() {
                     shippingMethod === 'standard' ? 'border-accent bg-accent-subtle' : 'border-border-strong',
                   )}
                 >
-                  <input type="radio" value="standard" {...register('shippingMethod')} className="accent-[var(--color-accent)]" />
+                  <input
+                    type="radio"
+                    value="standard"
+                    {...register('shippingMethod')}
+                    className="accent-[var(--color-accent)]"
+                  />
                   <span className="flex-1 text-sm">
                     <span className="font-medium">Standard</span>
                     <span className="block text-fg-muted">3â€“5 business days</span>
@@ -278,7 +287,12 @@ export function Checkout() {
                     shippingMethod === 'express' ? 'border-accent bg-accent-subtle' : 'border-border-strong',
                   )}
                 >
-                  <input type="radio" value="express" {...register('shippingMethod')} className="accent-[var(--color-accent)]" />
+                  <input
+                    type="radio"
+                    value="express"
+                    {...register('shippingMethod')}
+                    className="accent-[var(--color-accent)]"
+                  />
                   <span className="flex-1 text-sm">
                     <span className="font-medium">Express</span>
                     <span className="block text-fg-muted">1â€“2 business days</span>
@@ -369,7 +383,10 @@ export function Checkout() {
               Back
             </Button>
           ) : (
-            <Link to="/cart" className="text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline">
+            <Link
+              to="/cart"
+              className="text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline"
+            >
               Back to cart
             </Link>
           )}
@@ -400,7 +417,8 @@ export function Checkout() {
             <div className="flex justify-between text-success">
               <dt>Discount ({cart.totals.appliedPromoCode})</dt>
               <dd>
-                âˆ’<Price cents={cart.totals.discountCents} />
+                âˆ’
+                <Price cents={cart.totals.discountCents} />
               </dd>
             </div>
           ) : null}
@@ -419,4 +437,3 @@ export function Checkout() {
     </div>
   );
 }
-

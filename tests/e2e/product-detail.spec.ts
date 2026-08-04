@@ -2,25 +2,27 @@ import { test, expect } from '../fixtures/test';
 import { SEED_PRODUCTS } from '@shared/catalog-seed';
 
 test.describe('product detail', () => {
-
-  test("TC-027 | the quantity stepper is bounded by available stock", async({ api, productDetailPage }) => {
+  test('TC-027 | the quantity stepper is bounded by available stock', async ({ api, productDetailPage }) => {
     await api.reset();
 
     const productSlug = 'thornbury-burr-grinder';
     await productDetailPage.goto(productSlug);
-    
+
     await expect(productDetailPage.increaseQuantityButton).toBeEnabled();
 
     const seedProduct = SEED_PRODUCTS.find((p) => p.slug === productSlug);
     expect(seedProduct).toBeDefined();
     for (let i = 0; i < seedProduct!.stock - 1; i++) {
-        await productDetailPage.increaseQuantityButton.click();
+      await productDetailPage.increaseQuantityButton.click();
     }
 
     await expect(productDetailPage.increaseQuantityButton).toBeDisabled();
   });
 
-  test("TC-028 | an out-of-stock product shows a disabled state instead of Add to cart", async({ api, productDetailPage }) => {
+  test('TC-028 | an out-of-stock product shows a disabled state instead of Add to cart', async ({
+    api,
+    productDetailPage,
+  }) => {
     await api.reset();
 
     const inStockSlug = 'thornbury-burr-grinder';
@@ -41,12 +43,16 @@ test.describe('product detail', () => {
     expect(outOfStock!.stock).toEqual(0);
   });
 
-  test("TC-029 | adding a quantity greater than 1 adds that many units to the cart", async({ api, productDetailPage, cartPage }) => {
+  test('TC-029 | adding a quantity greater than 1 adds that many units to the cart', async ({
+    api,
+    productDetailPage,
+    cartPage,
+  }) => {
     await api.reset();
 
     const productSlug = 'thornbury-burr-grinder';
     await productDetailPage.goto(productSlug);
-    
+
     await productDetailPage.increaseQuantityButton.click();
     await productDetailPage.increaseQuantityButton.click();
     await productDetailPage.addToCartButton.click();
@@ -55,8 +61,11 @@ test.describe('product detail', () => {
     await expect(cartPage.quantityFor(productSlug)).toHaveText('3');
   });
 
-
-  test("TC-030 | a reviews fetch failure shows a retry state, and retry recovers it", async({ api, productDetailPage, page }) => {
+  test('TC-030 | a reviews fetch failure shows a retry state, and retry recovers it', async ({
+    api,
+    productDetailPage,
+    page,
+  }) => {
     await api.reset();
 
     let requestCount = 0;
@@ -69,14 +78,20 @@ test.describe('product detail', () => {
       } else {
         // mocks out a valid request that avoids the deliberate flakiness failures from a real response
         await route.fulfill({
-            status: 200,
-            json: {
-              slug: 'thornbury-burr-grinder',
-              reviews: [
-                { id: 'mock-1', author: 'Test Author', rating: 5, body: 'Great product.', postedAt: '2026-01-01T00:00:00.000Z' },
-              ],
-            },
-          });
+          status: 200,
+          json: {
+            slug: 'thornbury-burr-grinder',
+            reviews: [
+              {
+                id: 'mock-1',
+                author: 'Test Author',
+                rating: 5,
+                body: 'Great product.',
+                postedAt: '2026-01-01T00:00:00.000Z',
+              },
+            ],
+          },
+        });
       }
     });
 
@@ -84,11 +99,10 @@ test.describe('product detail', () => {
 
     await expect(productDetailPage.reviewsError).toBeVisible();
     await expect(productDetailPage.addToCartButton).toBeVisible();
-  
+
     await productDetailPage.reviewsRetryButton.click();
-  
+
     await expect(productDetailPage.reviewsError).toBeHidden();
     await expect(productDetailPage.reviews.first()).toBeVisible();
   });
-
 });

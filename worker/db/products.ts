@@ -136,7 +136,9 @@ export async function listProducts(
       )
       .bind(...facetFilter.params),
     db
-      .prepare('SELECT MIN(price_cents) AS min_cents, MAX(price_cents) AS max_cents FROM products WHERE session_id = ?')
+      .prepare(
+        'SELECT MIN(price_cents) AS min_cents, MAX(price_cents) AS max_cents FROM products WHERE session_id = ?',
+      )
       .bind(sessionId),
   ]);
 
@@ -177,7 +179,11 @@ export async function getProductById(db: D1Database, sessionId: string, id: stri
   return row ? toProduct(row) : null;
 }
 
-export async function getFeaturedProducts(db: D1Database, sessionId: string, limit: number): Promise<Product[]> {
+export async function getFeaturedProducts(
+  db: D1Database,
+  sessionId: string,
+  limit: number,
+): Promise<Product[]> {
   const result = await db
     .prepare(
       `SELECT ${PRODUCT_COLUMNS} FROM products WHERE session_id = ? AND featured = 1

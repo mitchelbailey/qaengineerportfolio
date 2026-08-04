@@ -38,7 +38,9 @@ export const authMiddleware = createMiddleware<AppEnv>(async (c, next) => {
     return next();
   }
 
-  const user = await c.env.DB.prepare('SELECT id, email, name, role FROM users WHERE session_id = ? AND id = ?')
+  const user = await c.env.DB.prepare(
+    'SELECT id, email, name, role FROM users WHERE session_id = ? AND id = ?',
+  )
     .bind(c.get('sessionId'), result.payload.uid)
     .first<{ id: string; email: string; name: string; role: 'admin' | 'viewer' }>();
 

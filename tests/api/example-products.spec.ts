@@ -50,7 +50,9 @@ test.describe('GET /api/products', () => {
     expect(body.error).toBe('validation_failed');
   });
 
-  test('TC-004 | minPrice greater than maxPrice is a validation error, not an empty result', async ({ api }) => {
+  test('TC-004 | minPrice greater than maxPrice is a validation error, not an empty result', async ({
+    api,
+  }) => {
     // A naive implementation would just return zero rows for an inverted
     // range. Silently returning "no results" for malformed input hides a bug
     // behind what looks like a legitimate empty state.

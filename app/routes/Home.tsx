@@ -14,12 +14,10 @@ export function Home() {
             <p className="text-xs font-semibold tracking-[0.2em] text-accent-text uppercase">
               Made in Melbourne
             </p>
-            <h1 className="mt-5 text-5xl leading-[1.05] md:text-6xl">
-              Everyday objects, made properly.
-            </h1>
+            <h1 className="mt-5 text-5xl leading-[1.05] md:text-6xl">Everyday objects, made properly.</h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-fg-muted">
-              Stoneware, brewing gear and small-batch coffee from makers around the Yarra. Built to
-              be used every morning for years.
+              Stoneware, brewing gear and small-batch coffee from makers around the Yarra. Built to be used
+              every morning for years.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link

@@ -43,9 +43,7 @@ export function AdminLogin() {
   return (
     <div className="mx-auto flex min-h-[70vh] max-w-md flex-col justify-center px-4 py-12 sm:px-6">
       <h1 className="text-3xl">Staff sign in</h1>
-      <p className="mt-2 text-sm text-fg-muted">
-        Manage the Yarra &amp; Co. catalog and orders.
-      </p>
+      <p className="mt-2 text-sm text-fg-muted">Manage the Yarra &amp; Co. catalog and orders.</p>
 
       {state.reason === 'expired' ? (
         <Alert className="mt-6" tone="warning" title="Your session expired">
@@ -85,7 +83,10 @@ export function AdminLogin() {
         </Button>
       </form>
 
-      <section aria-labelledby="demo-accounts" className="mt-8 rounded-lg border border-border bg-surface-muted p-4">
+      <section
+        aria-labelledby="demo-accounts"
+        className="mt-8 rounded-lg border border-border bg-surface-muted p-4"
+      >
         <h2 id="demo-accounts" className="text-xs font-semibold tracking-widest text-fg-muted uppercase">
           Demo accounts
         </h2>

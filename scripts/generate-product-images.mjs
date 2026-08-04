@@ -22,9 +22,9 @@ const seedSource = await import('node:fs').then((fs) =>
   fs.promises.readFile(join(here, '..', 'shared', 'catalog-seed.ts'), 'utf8'),
 );
 
-const products = [...seedSource.matchAll(/slug:\s*'([^']+)',\s*\n\s*name:\s*'([^']+)',\s*\n\s*category:\s*'([^']+)'/g)].map(
-  ([, slug, name, category]) => ({ slug, name, category }),
-);
+const products = [
+  ...seedSource.matchAll(/slug:\s*'([^']+)',\s*\n\s*name:\s*'([^']+)',\s*\n\s*category:\s*'([^']+)'/g),
+].map(([, slug, name, category]) => ({ slug, name, category }));
 
 if (products.length === 0) {
   console.error('Could not parse any products from shared/catalog-seed.ts');

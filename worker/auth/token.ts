@@ -33,7 +33,10 @@ function base64UrlEncode(bytes: Uint8Array): string {
 }
 
 function base64UrlDecode(value: string): Uint8Array {
-  const padded = value.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(value.length / 4) * 4, '=');
+  const padded = value
+    .replace(/-/g, '+')
+    .replace(/_/g, '/')
+    .padEnd(Math.ceil(value.length / 4) * 4, '=');
   const binary = atob(padded);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
@@ -63,9 +66,7 @@ export async function signToken(payload: AuthTokenPayload, secret: string): Prom
 
 export type TokenFailure = 'malformed' | 'bad_signature' | 'expired' | 'wrong_session';
 
-export type TokenResult =
-  | { ok: true; payload: AuthTokenPayload }
-  | { ok: false; reason: TokenFailure };
+export type TokenResult = { ok: true; payload: AuthTokenPayload } | { ok: false; reason: TokenFailure };
 
 export async function verifyToken(
   token: string,
@@ -79,12 +80,7 @@ export async function verifyToken(
   if (!body || !signature) return { ok: false, reason: 'malformed' };
 
   const key = await getKey(secret);
-  const valid = await crypto.subtle.verify(
-    'HMAC',
-    key,
-    base64UrlDecode(signature),
-    encoder.encode(body),
-  );
+  const valid = await crypto.subtle.verify('HMAC', key, base64UrlDecode(signature), encoder.encode(body));
   if (!valid) return { ok: false, reason: 'bad_signature' };
 
   let payload: AuthTokenPayload;

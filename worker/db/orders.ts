@@ -188,14 +188,18 @@ export async function createOrder(
           item.quantity,
         ),
       db
-        .prepare('UPDATE products SET stock = stock - ?, updated_at = ? WHERE session_id = ? AND id = ? AND stock >= ?')
+        .prepare(
+          'UPDATE products SET stock = stock - ?, updated_at = ? WHERE session_id = ? AND id = ? AND stock >= ?',
+        )
         .bind(item.quantity, now, sessionId, item.productId, item.quantity),
     );
   }
 
   statements.push(
     db.prepare('DELETE FROM cart_items WHERE session_id = ?').bind(sessionId),
-    db.prepare('UPDATE carts SET promo_code = NULL, updated_at = ? WHERE session_id = ?').bind(now, sessionId),
+    db
+      .prepare('UPDATE carts SET promo_code = NULL, updated_at = ? WHERE session_id = ?')
+      .bind(now, sessionId),
   );
 
   await db.batch(statements);

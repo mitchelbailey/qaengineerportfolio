@@ -70,7 +70,7 @@ swap it for a one-shot read without noticing, because the call site no longer
 shows the pattern being used.
 
 This was not a hypothetical worry: three separate times while verifying this
-app by hand, a plain script that read a value once reported the *previous*
+app by hand, a plain script that read a value once reported the _previous_
 page's data — a `24 products` result count for a search that genuinely
 returns 1. `expect(locator).toHaveText(...)`, which retries, resolved
 correctly every time in the same spot a one-shot read didn't.
@@ -112,9 +112,11 @@ the POM only exposes locators and multi-step actions:
 ```ts
 await expect(cartPage.discount).toHaveText('−$8.40');
 ```
+
 ```
 at tests/e2e/example-cart.spec.ts:44:31
 ```
+
 One frame. The failure points at the exact line.
 
 **Assertion-carrying** — the POM owns an `expectDiscount(value)` method:
@@ -122,10 +124,12 @@ One frame. The failure points at the exact line.
 ```ts
 await cartPage.expectDiscount('−$8.40');
 ```
+
 ```
 at CartPage.expectDiscount (cart.page.ts:28:33)
 at tests/e2e/example-cart.spec.ts:46:14
 ```
+
 Two frames. The trace lands inside a generic helper first, and following it
 back to the actual call site is one extra step — worse the more specs reuse
 that helper. It is also easy, inside a POM method, to write a one-shot read
@@ -136,7 +140,7 @@ object inherits it.
 
 ## Every mutation cache-write matches the server, not a local recompute
 
-The cart mutations in `app/lib/queries.ts` write the *server's* response into
+The cart mutations in `app/lib/queries.ts` write the _server's_ response into
 the query cache (`queryClient.setQueryData(queryKeys.cart(), cart)`) rather
 than recomputing a new total client-side and hoping it matches. This is a
 testing concern as much as a correctness one: if the client ever recomputed
@@ -150,7 +154,7 @@ DEF-002 (`docs/06-defect-reports`) was a real button click silently swallowed
 because a validation error's removal collapsed 22px out of the layout,
 carrying the button out from under the pointer between mousedown and mouseup.
 The natural-looking "fixes" — a wait, a retry, `{ force: true }` — would all
-have made the *test* pass while leaving real users clicking twice on the
+have made the _test_ pass while leaving real users clicking twice on the
 checkout page. When a click intermittently doesn't register, treat it as a
 product defect until proven otherwise, not a test to make more lenient.
 

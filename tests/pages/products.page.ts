@@ -7,7 +7,7 @@ export class ProductsPage extends BasePage {
   readonly maxPriceInput = this.page.getByLabel('Maximum price');
   readonly inStockOnlyCheckbox = this.page.getByLabel('In stock only');
   readonly clearFiltersButton = this.page.getByRole('button', { name: 'Clear all filters' });
-  readonly noProductsResultsText = this.page.getByText("No products match those filters");
+  readonly noProductsResultsText = this.page.getByText('No products match those filters');
 
   readonly resultCount = this.page.getByTestId('result-count');
   readonly grid = this.page.getByTestId('product-grid');
@@ -37,7 +37,7 @@ export class ProductsPage extends BasePage {
    * settled *and* the resulting fetch has resolved, which is the actual
    * condition a spec cares about.
    */
-  
+
   private async waitForGridToSettle() {
     await this.page.waitForFunction(
       () => document.querySelector('[data-testid="result-count"]')?.getAttribute('data-loading') === 'false',
@@ -63,7 +63,7 @@ export class ProductsPage extends BasePage {
     await this.pagination.getByRole('button', { name: String(pageNumber), exact: true }).click();
     await this.waitForGridToSettle();
   }
-  
+
   async setPriceRange(min?: string, max?: string) {
     if (min !== undefined) {
       await this.minPriceInput.fill(min);
@@ -85,5 +85,4 @@ export class ProductsPage extends BasePage {
     await this.clearFiltersButton.click();
     await this.waitForGridToSettle();
   }
-
 }

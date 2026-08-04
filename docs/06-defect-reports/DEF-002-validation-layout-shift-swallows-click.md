@@ -1,15 +1,15 @@
 # DEF-002 — Clearing a validation error shifts the layout and swallows the user's click
 
-| | |
-|---|---|
-| **Reported** | 2026-07-28 |
-| **Reported by** | Mitchel Bailey |
-| **Component** | Checkout — step navigation / shared `Field` component |
-| **Severity** | **S2 — Significant** (user is blocked until they click a second time) |
-| **Priority** | **P1** (sits on the revenue path) |
-| **Status** | Closed — fixed and covered by a regression test |
-| **Found during** | Exploratory browser walkthrough of the checkout wizard |
-| **Environment** | Local dev, Chromium 1.62, Node 24.18.0, viewport 1280×720 |
+|                  |                                                                       |
+| ---------------- | --------------------------------------------------------------------- |
+| **Reported**     | 2026-07-28                                                            |
+| **Reported by**  | Mitchel Bailey                                                        |
+| **Component**    | Checkout — step navigation / shared `Field` component                 |
+| **Severity**     | **S2 — Significant** (user is blocked until they click a second time) |
+| **Priority**     | **P1** (sits on the revenue path)                                     |
+| **Status**       | Closed — fixed and covered by a regression test                       |
+| **Found during** | Exploratory browser walkthrough of the checkout wizard                |
+| **Environment**  | Local dev, Chromium 1.62, Node 24.18.0, viewport 1280×720             |
 
 ## Summary
 
@@ -54,7 +54,7 @@ LAYOUT SHIFT                       :   22px
 Instrumenting the form's click handler confirmed the click event is never
 dispatched on the first attempt — the count of button clicks seen by the form
 stays at 1 (from step 2 of the repro) until the second click, when it becomes 2.
-Blurring the field explicitly *before* clicking makes the button work on the
+Blurring the field explicitly _before_ clicking makes the button work on the
 first click, which isolates the shift as the cause.
 
 ## Root cause
@@ -63,7 +63,13 @@ The shared `Field` component rendered its error message conditionally with no
 reserved space:
 
 ```tsx
-{error ? <p role="alert" className="text-xs …">{error}</p> : null}
+{
+  error ? (
+    <p role="alert" className="text-xs …">
+      {error}
+    </p>
+  ) : null;
+}
 ```
 
 Inside a `flex flex-col gap-1.5` column, removing that paragraph removes both

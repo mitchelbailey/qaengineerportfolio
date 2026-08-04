@@ -130,7 +130,9 @@ export async function addCartItem(
       .run();
   } else {
     await db
-      .prepare('INSERT INTO cart_items (session_id, id, product_id, quantity, added_at) VALUES (?, ?, ?, ?, ?)')
+      .prepare(
+        'INSERT INTO cart_items (session_id, id, product_id, quantity, added_at) VALUES (?, ?, ?, ?, ?)',
+      )
       .bind(sessionId, crypto.randomUUID(), productId, quantity, now)
       .run();
   }

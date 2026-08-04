@@ -6,7 +6,13 @@ import { ALLOWED_IMAGE_TYPES, formatBytes, isAllowedImageType, MAX_IMAGE_BYTES }
 import type { AppEnv } from '../types';
 import { ApiError, parseJsonBody, parseOrThrow } from '../lib/http';
 import { requireRole } from '../middleware/auth';
-import { createProduct, deleteProduct, listAllProducts, setProductImage, updateProduct } from '../db/product-admin';
+import {
+  createProduct,
+  deleteProduct,
+  listAllProducts,
+  setProductImage,
+  updateProduct,
+} from '../db/product-admin';
 import { listOrders, updateOrderStatus } from '../db/orders';
 
 export const adminRoutes = new Hono<AppEnv>();
@@ -61,7 +67,9 @@ adminRoutes.post('/products/:id/image', requireRole('admin'), async (c) => {
   }
   if (file.size > MAX_IMAGE_BYTES) {
     throw ApiError.validation('That image is too large', {
-      image: [`Images must be ${formatBytes(MAX_IMAGE_BYTES)} or smaller (yours is ${formatBytes(file.size)})`],
+      image: [
+        `Images must be ${formatBytes(MAX_IMAGE_BYTES)} or smaller (yours is ${formatBytes(file.size)})`,
+      ],
     });
   }
 
@@ -93,7 +101,9 @@ adminRoutes.get('/orders', requireRole('admin', 'viewer'), async (c) => {
   let status: OrderStatus | undefined;
   if (query.status !== undefined && query.status !== '') {
     if (!isOrderStatus(query.status)) {
-      throw ApiError.validation('Unknown order status', { status: [`"${query.status}" is not a valid status`] });
+      throw ApiError.validation('Unknown order status', {
+        status: [`"${query.status}" is not a valid status`],
+      });
     }
     status = query.status;
   }

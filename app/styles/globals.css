@@ -149,7 +149,9 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-variation-settings: 'SOFT' 0, 'WONK' 0;
+    font-variation-settings:
+      'SOFT' 0,
+      'WONK' 0;
     font-weight: 500;
     letter-spacing: -0.015em;
     text-wrap: balance;

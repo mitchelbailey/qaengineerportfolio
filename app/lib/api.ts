@@ -45,7 +45,11 @@ export async function apiFetch<T>(path: string, options: RequestOptions = {}): P
     try {
       payload = JSON.parse(text);
     } catch {
-      throw new ApiRequestError(response.status, 'invalid_response', 'The server returned an unreadable response');
+      throw new ApiRequestError(
+        response.status,
+        'invalid_response',
+        'The server returned an unreadable response',
+      );
     }
   }
 

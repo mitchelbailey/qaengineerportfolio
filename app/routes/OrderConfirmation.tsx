@@ -40,7 +40,14 @@ export function OrderConfirmation() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <div className="flex size-12 items-center justify-center rounded-full bg-success/15">
-        <svg viewBox="0 0 24 24" className="size-6 text-success" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          className="size-6 text-success"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          aria-hidden="true"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7" />
         </svg>
       </div>
@@ -66,7 +73,11 @@ export function OrderConfirmation() {
         <h2 className="text-xl">What you ordered</h2>
         <ul className="mt-4 divide-y divide-border border-y border-border">
           {order.items.map((item) => (
-            <li key={item.id} data-testid="order-item" className="flex items-center justify-between gap-4 py-4">
+            <li
+              key={item.id}
+              data-testid="order-item"
+              className="flex items-center justify-between gap-4 py-4"
+            >
               <div>
                 <p className="text-sm font-medium text-fg">
                   <Link to={`/products/${item.slug}`} className="hover:text-accent-text">
@@ -103,7 +114,9 @@ export function OrderConfirmation() {
             <dt className="text-fg-muted">
               Shipping ({order.shippingMethod === 'express' ? 'Express' : 'Standard'})
             </dt>
-            <dd>{order.totals.shippingCents === 0 ? 'Free' : <Price cents={order.totals.shippingCents} />}</dd>
+            <dd>
+              {order.totals.shippingCents === 0 ? 'Free' : <Price cents={order.totals.shippingCents} />}
+            </dd>
           </div>
           <div className="flex justify-between border-t border-border pt-2 text-base font-medium">
             <dt>Total paid</dt>

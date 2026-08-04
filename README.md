@@ -9,15 +9,15 @@ and component tests, wired to CI, with a full QA documentation layer.
 
 ## Stack
 
-| Layer | Choice |
-|---|---|
-| UI | React 19 · TypeScript · Vite 8 · React Router 8 · TanStack Query |
-| Styling | Tailwind CSS v4 · Radix UI primitives · self-hosted variable fonts |
-| API | Hono on Cloudflare Workers |
-| Data | Cloudflare D1 (SQLite), with per-session data isolation |
-| E2E | Playwright |
-| Unit/component | Vitest · Testing Library |
-| Hosting | A single Cloudflare Worker serves both the SPA and the API |
+| Layer          | Choice                                                             |
+| -------------- | ------------------------------------------------------------------ |
+| UI             | React 19 · TypeScript · Vite 8 · React Router 8 · TanStack Query   |
+| Styling        | Tailwind CSS v4 · Radix UI primitives · self-hosted variable fonts |
+| API            | Hono on Cloudflare Workers                                         |
+| Data           | Cloudflare D1 (SQLite), with per-session data isolation            |
+| E2E            | Playwright                                                         |
+| Unit/component | Vitest · Testing Library                                           |
+| Hosting        | A single Cloudflare Worker serves both the SPA and the API         |
 
 ## Getting started
 
@@ -28,21 +28,21 @@ npm install
 npm run dev          # http://localhost:5173 — React HMR, the Worker and local D1 in one process
 ```
 
-The dev server runs the *real* Worker via `@cloudflare/vite-plugin`, so local
+The dev server runs the _real_ Worker via `@cloudflare/vite-plugin`, so local
 development and production are the same stack rather than a mock of it.
 
 ## Scripts
 
-| Command | Purpose |
-|---|---|
-| `npm run dev` | App + API + local D1 |
-| `npm run build` | Production build |
-| `npm run typecheck` | Type-checks the app, worker and test projects |
-| `npm run lint` | ESLint, including the Playwright anti-flake rules |
-| `npm run test:unit` | Vitest unit and component tests |
-| `npm test` | Playwright suite |
-| `npm test:ui` | Visual Playwright UI |
-| `npm run verify` | Everything above, in order |
+| Command             | Purpose                                           |
+| ------------------- | ------------------------------------------------- |
+| `npm run dev`       | App + API + local D1                              |
+| `npm run build`     | Production build                                  |
+| `npm run typecheck` | Type-checks the app, worker and test projects     |
+| `npm run lint`      | ESLint, including the Playwright anti-flake rules |
+| `npm run test:unit` | Vitest unit and component tests                   |
+| `npm test`          | Playwright suite                                  |
+| `npm test:ui`       | Visual Playwright UI                              |
+| `npm run verify`    | Everything above, in order                        |
 
 ## Repository layout
 

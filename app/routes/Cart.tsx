@@ -52,9 +52,7 @@ export function Cart() {
           <EmptyState
             title="Your cart is empty"
             description="Nothing here yet. Have a look through the shop and add something you like."
-            action={
-              <Button onClick={() => void navigate('/products')}>Browse the shop</Button>
-            }
+            action={<Button onClick={() => void navigate('/products')}>Browse the shop</Button>}
           />
         </div>
       </div>
@@ -133,9 +131,7 @@ export function Cart() {
                       Remove
                     </button>
                     {item.quantity >= item.availableStock ? (
-                      <span className="text-xs text-warning">
-                        Only {item.availableStock} available
-                      </span>
+                      <span className="text-xs text-warning">Only {item.availableStock} available</span>
                     ) : null}
                   </div>
                 </div>
@@ -168,7 +164,12 @@ export function Cart() {
                   invalid={applyPromo.isError}
                   aria-describedby={applyPromo.isError ? 'promo-error' : undefined}
                 />
-                <Button type="submit" variant="secondary" loading={applyPromo.isPending} disabled={!promoInput.trim()}>
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  loading={applyPromo.isPending}
+                  disabled={!promoInput.trim()}
+                >
                   Apply
                 </Button>
               </div>
@@ -232,7 +233,10 @@ export function Cart() {
             </dl>
 
             {cart.amountUntilFreeShippingCents > 0 ? (
-              <p data-testid="free-shipping-hint" className="mt-4 rounded-md bg-surface-muted px-3 py-2 text-xs text-fg-muted">
+              <p
+                data-testid="free-shipping-hint"
+                className="mt-4 rounded-md bg-surface-muted px-3 py-2 text-xs text-fg-muted"
+              >
                 Spend {formatAud(cart.amountUntilFreeShippingCents)} more for free standard shipping.
               </p>
             ) : null}

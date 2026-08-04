@@ -50,10 +50,14 @@ export const productListQuerySchema = z
       .transform((value) => value === 'true')
       .optional(),
   })
-  .refine((query) => query.minPrice === undefined || query.maxPrice === undefined || query.minPrice <= query.maxPrice, {
-    message: 'Minimum price cannot be greater than maximum price',
-    path: ['minPrice'],
-  });
+  .refine(
+    (query) =>
+      query.minPrice === undefined || query.maxPrice === undefined || query.minPrice <= query.maxPrice,
+    {
+      message: 'Minimum price cannot be greater than maximum price',
+      path: ['minPrice'],
+    },
+  );
 export type ProductListQuery = z.infer<typeof productListQuerySchema>;
 
 export const MAX_CART_QUANTITY = 20;

@@ -82,9 +82,7 @@ export function Products() {
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <header>
         <h1 className="text-4xl">Shop</h1>
-        <p className="mt-2 text-fg-muted">
-          Homewares and coffee goods, made and sourced around Melbourne.
-        </p>
+        <p className="mt-2 text-fg-muted">Homewares and coffee goods, made and sourced around Melbourne.</p>
       </header>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[220px_1fr]">
@@ -100,7 +98,9 @@ export function Products() {
                   aria-pressed={category === ''}
                   className={cn(
                     'w-full rounded-md px-2 py-1.5 text-left text-sm transition-colors',
-                    category === '' ? 'bg-accent-subtle font-medium text-accent-text' : 'text-fg-muted hover:text-fg',
+                    category === ''
+                      ? 'bg-accent-subtle font-medium text-accent-text'
+                      : 'text-fg-muted hover:text-fg',
                   )}
                 >
                   All products

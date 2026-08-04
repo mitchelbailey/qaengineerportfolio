@@ -35,9 +35,7 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 7_000 },
 
-  reporter: process.env.CI
-    ? [['blob'], ['github'], ['list']]
-    : [['html', { open: 'never' }], ['list']],
+  reporter: process.env.CI ? [['blob'], ['github'], ['list']] : [['html', { open: 'never' }], ['list']],
 
   use: {
     baseURL,

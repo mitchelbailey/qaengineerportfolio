@@ -24,9 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         ) : product.lowStock ? (
           <span className="absolute top-3 left-3">
-            <Badge tone="warning">
-              Only {product.stock} left
-            </Badge>
+            <Badge tone="warning">Only {product.stock} left</Badge>
           </span>
         ) : null}
       </Link>

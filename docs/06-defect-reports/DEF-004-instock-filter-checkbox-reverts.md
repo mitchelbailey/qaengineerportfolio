@@ -1,15 +1,15 @@
 # DEF-004 — "In stock only" checkbox intermittently reverts and the filter never applies
 
-| | |
-|---|---|
-| **Reported** | 2026-07-31 |
-| **Reported by** | Mitchel Bailey |
-| **Component** | Storefront — Products page filters (`inStockOnly` / `minPrice`, `app/routes/Products.tsx`) |
-| **Severity** | TBD — pending confirmation (not yet reproduced outside automated E2E) |
-| **Priority** | TBD |
-| **Status** | **Open — intermittent, root cause not confirmed** |
+|                  |                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------------- |
+| **Reported**     | 2026-07-31                                                                                    |
+| **Reported by**  | Mitchel Bailey                                                                                |
+| **Component**    | Storefront — Products page filters (`inStockOnly` / `minPrice`, `app/routes/Products.tsx`)    |
+| **Severity**     | TBD — pending confirmation (not yet reproduced outside automated E2E)                         |
+| **Priority**     | TBD                                                                                           |
+| **Status**       | **Open — intermittent, root cause not confirmed**                                             |
 | **Found during** | Writing E2E coverage for the Products filters (`tests/e2e/products-browsing.spec.ts`, TC-022) |
-| **Environment** | Local `vite preview` build, Playwright, reproduced on both Chromium and WebKit projects |
+| **Environment**  | Local `vite preview` build, Playwright, reproduced on both Chromium and WebKit projects       |
 
 ## Summary
 
@@ -86,8 +86,8 @@ function updateParam(key: string, value: string | null) {
 The test sequence calls `updateParam` twice in quick succession — once from
 the min-price field's `onBlur` (setting `minPrice`), then shortly after from
 the checkbox's `onChange` (setting `inStockOnly`). The working theory is that
-these two `setSearchParams` calls can race: if the *earlier-dispatched*
-update (from the price field) resolves *after* the later one (from the
+these two `setSearchParams` calls can race: if the _earlier-dispatched_
+update (from the price field) resolves _after_ the later one (from the
 checkbox), it would commit a `URLSearchParams` snapshot taken before
 `inStockOnly` existed — silently overwriting it. This would explain every
 observed symptom (checkbox reverts because the URL reverts; grid doesn't

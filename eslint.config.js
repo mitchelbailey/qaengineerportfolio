@@ -6,7 +6,16 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import playwright from 'eslint-plugin-playwright';
 
 export default tseslint.config(
-  { ignores: ['dist/**', 'coverage/**', 'playwright-report/**', 'blob-report/**', 'test-results/**', '.wrangler/**'] },
+  {
+    ignores: [
+      'dist/**',
+      'coverage/**',
+      'playwright-report/**',
+      'blob-report/**',
+      'test-results/**',
+      '.wrangler/**',
+    ],
+  },
 
   // Application + worker + shared code
   {
@@ -39,7 +48,11 @@ export default tseslint.config(
    */
   {
     files: ['tests/**/*.ts'],
-    extends: [js.configs.recommended, ...tseslint.configs.recommendedTypeChecked, playwright.configs['flat/recommended']],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      playwright.configs['flat/recommended'],
+    ],
     languageOptions: {
       globals: globals.node,
       parserOptions: {

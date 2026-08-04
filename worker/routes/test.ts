@@ -100,7 +100,13 @@ testRoutes.post('/seed', async (c) => {
       const orderId = crypto.randomUUID();
       const reference = generateReference();
 
-      const lines: Array<{ productId: string; slug: string; name: string; priceCents: number; quantity: number }> = [];
+      const lines: Array<{
+        productId: string;
+        slug: string;
+        name: string;
+        priceCents: number;
+        quantity: number;
+      }> = [];
       for (const item of spec.items) {
         const row = await db
           .prepare('SELECT id, slug, name, price_cents FROM products WHERE session_id = ? AND slug = ?')

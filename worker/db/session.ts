@@ -59,13 +59,17 @@ export async function seedSession(db: D1Database, sessionId: string, now: number
 
   for (const user of SEED_USERS) {
     statements.push(
-      db.prepare(USER_INSERT).bind(sessionId, crypto.randomUUID(), user.email, user.name, user.role, passwordHash),
+      db
+        .prepare(USER_INSERT)
+        .bind(sessionId, crypto.randomUUID(), user.email, user.name, user.role, passwordHash),
     );
   }
 
   statements.push(
     db
-      .prepare(`INSERT INTO carts (session_id, promo_code, shipping_method, updated_at) VALUES (?1, NULL, 'standard', ?2)`)
+      .prepare(
+        `INSERT INTO carts (session_id, promo_code, shipping_method, updated_at) VALUES (?1, NULL, 'standard', ?2)`,
+      )
       .bind(sessionId, now),
   );
 

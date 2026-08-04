@@ -63,7 +63,14 @@ export function Modal({
             aria-label="Close dialog"
             className="absolute top-4 right-4 rounded-md p-1.5 text-fg-muted transition-colors hover:bg-surface-muted hover:text-fg"
           >
-            <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              className="size-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
               <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
             </svg>
           </Dialog.Close>

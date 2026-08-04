@@ -12,7 +12,16 @@ import { adminOrdersQuery, useUpdateOrderStatus } from '@/lib/admin-queries';
 import { useAdminUser } from './use-admin-user';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
-import { Alert, Badge, EmptyState, Pagination, Price, Select, Skeleton, type BadgeTone } from '@/components/ui/primitives';
+import {
+  Alert,
+  Badge,
+  EmptyState,
+  Pagination,
+  Price,
+  Select,
+  Skeleton,
+  type BadgeTone,
+} from '@/components/ui/primitives';
 import { useToast } from '@/components/ui/toast-context';
 
 const STATUS_TONES: Record<OrderStatus, BadgeTone> = {
@@ -112,12 +121,24 @@ export function AdminOrders() {
               <caption className="sr-only">Orders</caption>
               <thead className="bg-surface-muted">
                 <tr>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">Reference</th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">Placed</th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">Customer</th>
-                  <th scope="col" className="px-4 py-3 text-right font-medium text-fg-muted">Items</th>
-                  <th scope="col" className="px-4 py-3 text-right font-medium text-fg-muted">Total</th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">Status</th>
+                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">
+                    Reference
+                  </th>
+                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">
+                    Placed
+                  </th>
+                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">
+                    Customer
+                  </th>
+                  <th scope="col" className="px-4 py-3 text-right font-medium text-fg-muted">
+                    Items
+                  </th>
+                  <th scope="col" className="px-4 py-3 text-right font-medium text-fg-muted">
+                    Total
+                  </th>
+                  <th scope="col" className="px-4 py-3 text-left font-medium text-fg-muted">
+                    Status
+                  </th>
                   <th scope="col" className="px-4 py-3 text-right font-medium text-fg-muted">
                     <span className="sr-only">Actions</span>
                   </th>
@@ -203,21 +224,33 @@ export function AdminOrders() {
             <dl className="mt-4 space-y-1.5 text-sm">
               <div className="flex justify-between">
                 <dt className="text-fg-muted">Subtotal</dt>
-                <dd><Price cents={current.totals.subtotalCents} /></dd>
+                <dd>
+                  <Price cents={current.totals.subtotalCents} />
+                </dd>
               </div>
               {current.totals.discountCents > 0 ? (
                 <div className="flex justify-between text-success">
                   <dt>Discount ({current.totals.appliedPromoCode})</dt>
-                  <dd>−<Price cents={current.totals.discountCents} /></dd>
+                  <dd>
+                    −<Price cents={current.totals.discountCents} />
+                  </dd>
                 </div>
               ) : null}
               <div className="flex justify-between">
                 <dt className="text-fg-muted">Shipping</dt>
-                <dd>{current.totals.shippingCents === 0 ? 'Free' : <Price cents={current.totals.shippingCents} />}</dd>
+                <dd>
+                  {current.totals.shippingCents === 0 ? (
+                    'Free'
+                  ) : (
+                    <Price cents={current.totals.shippingCents} />
+                  )}
+                </dd>
               </div>
               <div className="flex justify-between border-t border-border pt-1.5 font-medium">
                 <dt>Total</dt>
-                <dd data-testid="order-detail-total"><Price cents={current.totals.totalCents} /></dd>
+                <dd data-testid="order-detail-total">
+                  <Price cents={current.totals.totalCents} />
+                </dd>
               </div>
             </dl>
 
@@ -227,7 +260,8 @@ export function AdminOrders() {
               {current.shippingAddress.line1}
               {current.shippingAddress.line2 ? <>, {current.shippingAddress.line2}</> : null}
               <br />
-              {current.shippingAddress.suburb} {current.shippingAddress.state} {current.shippingAddress.postcode}
+              {current.shippingAddress.suburb} {current.shippingAddress.state}{' '}
+              {current.shippingAddress.postcode}
             </address>
 
             {updateStatus.isError ? (
@@ -270,7 +304,7 @@ export function AdminOrders() {
                     </Button>
                   ))}
                 </div>
-                {(current.status === 'paid' || current.status === 'packed') ? (
+                {current.status === 'paid' || current.status === 'packed' ? (
                   <p className="mt-3 text-xs text-fg-muted">
                     Cancelling or refunding returns the ordered quantities to stock.
                   </p>

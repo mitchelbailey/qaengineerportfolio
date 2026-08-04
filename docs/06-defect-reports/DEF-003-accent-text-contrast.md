@@ -1,31 +1,31 @@
 # DEF-003 — Accent-coloured text fails WCAG AA contrast on tinted backgrounds
 
-| | |
-|---|---|
-| **Reported** | 2026-07-29 |
-| **Reported by** | Mitchel Bailey / Claude (automated a11y scan) |
-| **Component** | Design tokens — `--accent` used as a text colour |
-| **Severity** | **S3 — Minor** (perceivable but below WCAG AA for some users; no functional blockage) |
-| **Priority** | **P2** |
-| **Status** | Closed — fixed and covered by a regression test |
+|                  |                                                                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Reported**     | 2026-07-29                                                                                                                               |
+| **Reported by**  | Mitchel Bailey / Claude (automated a11y scan)                                                                                            |
+| **Component**    | Design tokens — `--accent` used as a text colour                                                                                         |
+| **Severity**     | **S3 — Minor** (perceivable but below WCAG AA for some users; no functional blockage)                                                    |
+| **Priority**     | **P2**                                                                                                                                   |
+| **Status**       | Closed — fixed and covered by a regression test                                                                                          |
 | **Found during** | First run of the accessibility example spec (`tests/a11y/example-storefront.spec.ts`), while building the Phase 5 Playwright foundations |
-| **Environment** | Chromium, `axe-core` via `@axe-core/playwright`, light theme |
+| **Environment**  | Chromium, `axe-core` via `@axe-core/playwright`, light theme                                                                             |
 
 ## Summary
 
 `axe-core` flagged `color-contrast` violations (WCAG 1.4.3, serious impact) on
 three elements, all sharing the same cause: the accent colour
-(`--accent`, terracotta-500, `#B4553C`) was used as *text* against
+(`--accent`, terracotta-500, `#B4553C`) was used as _text_ against
 `--surface-muted` and `--accent-subtle` backgrounds, both of which are too
 light for it to clear the 4.5:1 ratio WCAG AA requires for normal-size text.
 
 ## Failing elements
 
-| Element | Foreground / background | Measured ratio | Required |
-|---|---|---|---|
-| Footer "View the test suite on GitHub" link | `#B4553C` on `#F3EFE9` | 4.26:1 | 4.5:1 |
-| Home hero kicker ("Made in Melbourne") | `#B4553C` on `#F3EFE9` | 4.26:1 | 4.5:1 |
-| Products page active category filter button | `#B4553C` on `#F6E9E3` | 4.11:1 | 4.5:1 |
+| Element                                     | Foreground / background | Measured ratio | Required |
+| ------------------------------------------- | ----------------------- | -------------- | -------- |
+| Footer "View the test suite on GitHub" link | `#B4553C` on `#F3EFE9`  | 4.26:1         | 4.5:1    |
+| Home hero kicker ("Made in Melbourne")      | `#B4553C` on `#F3EFE9`  | 4.26:1         | 4.5:1    |
+| Products page active category filter button | `#B4553C` on `#F6E9E3`  | 4.11:1         | 4.5:1    |
 
 All three appear on pages the example a11y spec scans (home, product grid),
 which is exactly why an automated scan catches this class of defect and a
@@ -39,7 +39,7 @@ The design token `--accent` (`shared` styling in `app/styles/globals.css`) is
 tuned for one job: white text on top of a solid accent-coloured button
 (`--accent-fg` on `--accent`, which has plenty of contrast). It was then
 reused, via Tailwind's `text-accent` utility, everywhere the codebase wanted
-"the accent colour" applied to *text* — a second job the same shade was never
+"the accent colour" applied to _text_ — a second job the same shade was never
 checked against.
 
 ## Fix
@@ -67,7 +67,7 @@ Worth calling out in an interview: this was not manually eyeballed or guessed
 at. Contrast ratios were computed with the actual WCAG relative-luminance
 formula for every accent-on-background combination in the palette before
 touching any code, which is also what caught that a fourth, superficially
-similar-looking case — the amber "low stock" badge — was *not* actually
+similar-looking case — the amber "low stock" badge — was _not_ actually
 failing once its real 15%-opacity-blended background was accounted for rather
 than approximated against a solid colour. Fixing the badge would have been a
 wasted, unverified change; not fixing the accent text would have shipped a

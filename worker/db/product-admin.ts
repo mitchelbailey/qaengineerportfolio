@@ -97,7 +97,9 @@ export async function updateProduct(
 
   // Only keys the caller actually sent are written. An absent key means "leave
   // it alone", never "reset it to a default" — see DEF-001.
-  for (const [key, column] of Object.entries(UPDATABLE_COLUMNS) as Array<[keyof AdminProductUpdate, string]>) {
+  for (const [key, column] of Object.entries(UPDATABLE_COLUMNS) as Array<
+    [keyof AdminProductUpdate, string]
+  >) {
     const value = input[key];
     if (value === undefined) continue;
     assignments.push(`${column} = ?`);
@@ -159,10 +161,7 @@ export async function setProductImage(
 }
 
 /** Admin listing: every product, newest edits first, no storefront filtering. */
-export async function listAllProducts(
-  db: D1Database,
-  sessionId: string,
-): Promise<Product[]> {
+export async function listAllProducts(db: D1Database, sessionId: string): Promise<Product[]> {
   const result = await db
     .prepare(`SELECT ${PRODUCT_COLUMNS} FROM products WHERE session_id = ? ORDER BY sort_order ASC`)
     .bind(sessionId)

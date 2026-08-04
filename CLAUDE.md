@@ -54,7 +54,7 @@ see the top comment in `playwright.config.ts` for why.
   `worker/middleware/session.ts`). This is what makes `fullyParallel: true`
   safe with zero test cleanup — no shared database state, no serial mode.
 - **`shared/`** holds Zod schemas and domain logic imported by the app, the
-  Worker, *and* the test suite. Tests import only from `shared/`, never from
+  Worker, _and_ the test suite. Tests import only from `shared/`, never from
   `app/` or `worker/` internals — that boundary is what keeps the suite a
   genuine black-box exercise of the running app.
 - **Test-support endpoints** live at `/api/test/*` (`worker/routes/test.ts`),
