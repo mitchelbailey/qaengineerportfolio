@@ -30,7 +30,14 @@ export default defineConfig({
   /* Retries in CI only. Locally a flaky test should be visibly flaky, not
      quietly retried into a pass. */
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 4 : undefined,
+  /* Pinned rather than left to auto-detect: the webServer below is a single
+     `vite preview` process (Miniflare/workerd with a local SQLite-backed D1),
+     not a horizontally scaled server. Playwright's local default is half the
+     machine's logical CPU count, which on a high-core-count dev box can spin
+     up dozens of workers and overwhelm that single process with concurrent
+     connections, producing intermittent ECONNREFUSED. A fixed low count keeps
+     the run reliable regardless of what machine it's run on. */
+  workers: 2,
 
   timeout: 30_000,
   expect: { timeout: 7_000 },

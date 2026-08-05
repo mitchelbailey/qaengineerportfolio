@@ -58,8 +58,32 @@ test.describe('visual baselines', () => {
   test('VIS-05 | product detail, mobile viewport', async ({ productDetailPage, api, page }) => {
     await api.reset();
     await page.setViewportSize({ width: 390, height: 844 });
+
+    // The reviews widget is deliberately unreliable (FLAKY_WIDGET_FAILURE_RATE
+    // in wrangler.jsonc) so the real endpoint's success/error state — and the
+    // height difference between them — would make this baseline flaky. Mock a
+    // fixed response, same pattern as TC-030 in product-detail.spec.ts.
+    await page.route('**/api/reviews/**', async (route) => {
+      await route.fulfill({
+        status: 200,
+        json: {
+          slug: 'brunswick-stoneware-mug',
+          reviews: [
+            {
+              id: 'mock-1',
+              author: 'Test Author',
+              rating: 5,
+              body: 'Great product.',
+              postedAt: '2026-01-01T00:00:00.000Z',
+            },
+          ],
+        },
+      });
+    });
+
     await productDetailPage.goto('brunswick-stoneware-mug');
     await productDetailPage.heading.waitFor();
+    await productDetailPage.reviews.first().waitFor();
 
     await expect(page).toHaveScreenshot('product-detail-mobile.png', { fullPage: true });
   });
