@@ -77,7 +77,7 @@ test.describe('product detail', () => {
       if (requestCount <= 2) {
         await route.fulfill({ status: 503, json: { error: 'upstream_unavailable', message: 'unavailable' } });
       } else {
-        // mocks out a valid request that avoids the deliberate flakiness failures from a real response
+        // Return a deterministic valid payload after the user-triggered retry.
         await route.fulfill({
           status: 200,
           json: {
@@ -105,5 +105,6 @@ test.describe('product detail', () => {
 
     await expect(productDetailPage.reviewsError).toBeHidden();
     await expect(productDetailPage.reviews.first()).toBeVisible();
+    expect(requestCount).toEqual(3);
   });
 });

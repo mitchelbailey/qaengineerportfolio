@@ -30,7 +30,7 @@
     "test:visual:update": "playwright test --project=visual --update-snapshots",
     "test:smoke": "playwright test --grep @smoke",
     "test:report": "playwright show-report",
-    "verify": "npm run lint && npm run typecheck && npm run test:unit && npm run test"
+    "verify": "npm run lint && npm run format:check && npm run typecheck && npm run test:unit && npm run test"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",

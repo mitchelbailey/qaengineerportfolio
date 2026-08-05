@@ -108,7 +108,7 @@ test.describe('browse products', () => {
 
     await expect(productsPage.cards).toHaveCount(filteredSeedSlugs.length);
     await expect(productsPage.resultCount).toHaveText(`${filteredSeedSlugs.length} products`);
-    
+
     const filteredSlugs = await slugsOnPage(productsPage);
     expect(filteredSlugs).toEqual(filteredSeedSlugs);
 
@@ -166,8 +166,8 @@ test.describe('browse products', () => {
     await expect(productsPage.cards).toHaveCount(0);
   });
 
-  test('TC-026 | paginating to page 2 loads a different set of products', async ({ 
-    api, 
+  test('TC-026 | paginating to page 2 loads a different set of products', async ({
+    api,
     productsPage,
     page,
   }) => {
@@ -185,7 +185,10 @@ test.describe('browse products', () => {
     }).toPass();
   });
 
-  test("TC-042 | paginating to page 2 loads the next page of the default featured sort", async ({ api, productsPage }) => {
+  test('TC-042 | paginating to page 2 loads the next page of the default featured sort', async ({
+    api,
+    productsPage,
+  }) => {
     await api.reset();
     await productsPage.goto();
 
@@ -193,8 +196,11 @@ test.describe('browse products', () => {
 
     // Mirrors the app's default sort rule (featured first, then seed insertion
     // order — worker/db/session.ts seeds sort_order as the SEED_PRODUCTS index).
-    const defaultOrder = SEED_PRODUCTS
-      .map((product, index) => ({ slug: product.slug, featured: product.featured, index }))
+    const defaultOrder = SEED_PRODUCTS.map((product, index) => ({
+      slug: product.slug,
+      featured: product.featured,
+      index,
+    }))
       .sort((a, b) => Number(b.featured) - Number(a.featured) || a.index - b.index)
       .map((product) => product.slug);
 
@@ -202,8 +208,8 @@ test.describe('browse products', () => {
 
     await productsPage.goToPage(2);
 
-    await expect.poll(() => slugsInDisplayOrder(productsPage)).toEqual(defaultOrder.slice(pageSize, pageSize * 2));
-    
+    await expect
+      .poll(() => slugsInDisplayOrder(productsPage))
+      .toEqual(defaultOrder.slice(pageSize, pageSize * 2));
   });
-
 });
