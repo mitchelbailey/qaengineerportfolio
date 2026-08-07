@@ -8,6 +8,7 @@ const navItems = [
   { to: '/products', label: 'Shop' },
   { to: '/products?category=coffee', label: 'Coffee' },
   { to: '/products?category=ceramics', label: 'Ceramics' },
+  { to: '/admin', label: 'Admin' },
 ];
 
 export function Header() {

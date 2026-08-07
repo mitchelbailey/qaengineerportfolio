@@ -15,7 +15,7 @@ test.describe('product detail', () => {
     for (let i = 0; i < seedProduct!.stock - 1; i++) {
       await productDetailPage.increaseQuantityButton.click();
     }
-    
+
     await expect(productDetailPage.quantity).toHaveText(String(seedProduct?.stock));
     await expect(productDetailPage.increaseQuantityButton).toBeDisabled();
   });

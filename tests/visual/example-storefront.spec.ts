@@ -62,7 +62,7 @@ test.describe('visual baselines', () => {
     // The reviews widget is deliberately unreliable (FLAKY_WIDGET_FAILURE_RATE
     // in wrangler.jsonc) so the real endpoint's success/error state — and the
     // height difference between them — would make this baseline flaky. Mock a
-    // fixed response, same pattern as TC-030 in product-detail.spec.ts.
+    // fixed response
     await page.route('**/api/reviews/**', async (route) => {
       await route.fulfill({
         status: 200,

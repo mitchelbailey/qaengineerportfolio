@@ -4,7 +4,6 @@ import type { ProductsPage } from '../pages/products.page';
 import { productListQuerySchema } from '@shared/schemas';
 
 test.describe('browse products', () => {
-  
   async function slugsInDisplayOrder(productsPage: ProductsPage) {
     return productsPage.cards.evaluateAll((cards) => cards.map((c) => c.getAttribute('data-slug')));
   }

@@ -7,6 +7,18 @@ and component tests, wired to CI, with a full QA documentation layer.
 > **Status: in development.** Phase 1 (foundation) complete. The recruiter-facing
 > README, badges, live demo link and published test report land in phase 8.
 
+public demo link;
+screenshots;
+what the application demonstrates;
+test categories and commands;
+architecture and test-isolation overview;
+CI behaviour;
+known defect DEF-004;
+your specific contribution;
+AI-assisted components.
+
+The application scaffold, testing infrastructure and initial example scenarios were developed with AI assistance. I authored and expanded the product browsing, product detail and API test suites, investigated and documented test failures, refined assertions and reliability, and reviewed the supporting fixtures and session-isolation architecture until I could explain and modify them.
+
 ## Stack
 
 | Layer          | Choice                                                             |
