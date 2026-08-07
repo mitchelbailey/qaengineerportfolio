@@ -88,7 +88,7 @@ export function Checkout() {
   /**
    * Advancing validates only the current step's fields. Values entered on
    * earlier steps stay in the form, so going back and forward never loses input
-   * â€” a behaviour that is easy to break and worth an explicit test.
+   * — a behaviour that is easy to break and worth an explicit test.
    */
   async function goToNextStep() {
     const valid = await trigger(STEP_FIELDS[step] ?? [], { shouldFocus: true });
@@ -128,7 +128,7 @@ export function Checkout() {
                     : 'bg-surface-muted text-fg-muted',
               )}
             >
-              {entry.id < step ? 'âœ“' : entry.id}
+              {entry.id < step ? '✓' : entry.id}
             </span>
             <span className={cn('text-sm', entry.id === step ? 'font-medium text-fg' : 'text-fg-muted')}>
               {entry.label}
@@ -272,7 +272,7 @@ export function Checkout() {
                   />
                   <span className="flex-1 text-sm">
                     <span className="font-medium">Standard</span>
-                    <span className="block text-fg-muted">3â€“5 business days</span>
+                    <span className="block text-fg-muted">3–5 business days</span>
                   </span>
                   <span className="text-sm">
                     {cart.totals.subtotalCents - cart.totals.discountCents >= cart.freeShippingThresholdCents
@@ -295,7 +295,7 @@ export function Checkout() {
                   />
                   <span className="flex-1 text-sm">
                     <span className="font-medium">Express</span>
-                    <span className="block text-fg-muted">1â€“2 business days</span>
+                    <span className="block text-fg-muted">1–2 business days</span>
                   </span>
                   <span className="text-sm">{formatAud(EXPRESS_SHIPPING_CENTS)}</span>
                 </label>
@@ -357,19 +357,19 @@ export function Checkout() {
             </div>
 
             <div className="rounded-md border border-border bg-surface-muted p-4 text-xs text-fg-muted">
-              <p className="font-medium text-fg">Demo payment â€” no card is ever charged</p>
+              <p className="font-medium text-fg">Demo payment — no card is ever charged</p>
               <ul className="mt-2 space-y-1">
                 <li>
-                  <code className="text-fg">{TEST_CARDS.approved}</code> â€” approved
+                  <code className="text-fg">{TEST_CARDS.approved}</code> — approved
                 </li>
                 <li>
-                  <code className="text-fg">{TEST_CARDS.declined}</code> â€” declined
+                  <code className="text-fg">{TEST_CARDS.declined}</code> — declined
                 </li>
                 <li>
-                  <code className="text-fg">{TEST_CARDS.insufficient_funds}</code> â€” insufficient funds
+                  <code className="text-fg">{TEST_CARDS.insufficient_funds}</code> — insufficient funds
                 </li>
                 <li>
-                  <code className="text-fg">{TEST_CARDS.processing_error}</code> â€” provider error
+                  <code className="text-fg">{TEST_CARDS.processing_error}</code> — provider error
                 </li>
               </ul>
             </div>
@@ -417,7 +417,7 @@ export function Checkout() {
             <div className="flex justify-between text-success">
               <dt>Discount ({cart.totals.appliedPromoCode})</dt>
               <dd>
-                âˆ’
+                −
                 <Price cents={cart.totals.discountCents} />
               </dd>
             </div>

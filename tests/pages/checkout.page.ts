@@ -1,6 +1,8 @@
 import { BasePage } from './base.page';
 
 export class CheckoutPage extends BasePage {
+  readonly emptyCheckout = this.page.getByText('There is nothing to check out');
+
   readonly step1 = this.page.getByTestId('checkout-step-1');
   readonly step2 = this.page.getByTestId('checkout-step-2');
   readonly step3 = this.page.getByTestId('checkout-step-3');

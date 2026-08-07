@@ -12,6 +12,7 @@ export class CartPage extends BasePage {
   readonly promoInput = this.page.getByLabel('Promo code');
   readonly applyPromoButton = this.page.getByRole('button', { name: 'Apply' });
   readonly checkoutButton = this.page.getByRole('button', { name: 'Proceed to checkout' });
+  readonly emptyCart = this.page.getByText('Your cart is empty');
 
   async goto() {
     await this.page.goto('/cart');
