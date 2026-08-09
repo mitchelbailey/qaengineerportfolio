@@ -1,7 +1,7 @@
 import { test, expect } from './a11y-test';
 
-test.describe('WCAG 2.1 AA — admin login page', () => {
-  test('TC-064 | the admin orders page has no violations', async ({
+test.describe('WCAG 2.1 AA — admin orders page', () => {
+  test('TC-066 | the admin orders page has no violations', async ({
     api,
     makeAxeBuilder,
     adminOrdersPage,
@@ -12,7 +12,7 @@ test.describe('WCAG 2.1 AA — admin login page', () => {
     const { orderReferences } = await api.seed({
       orders: [{ items: [{ slug: 'brunswick-stoneware-mug', quantity: 1 }] }],
     });
-    expect(orderReferences).toBeDefined();
+    expect(orderReferences[0]).toBeDefined();
 
     await adminOrdersPage.goto();
     await expect(adminOrdersPage.rowByReference(orderReferences[0]!)).toBeVisible();
@@ -32,7 +32,7 @@ test.describe('WCAG 2.1 AA — admin login page', () => {
     const { orderReferences } = await api.seed({
       orders: [{ items: [{ slug: 'brunswick-stoneware-mug', quantity: 1 }] }],
     });
-    expect(orderReferences).toBeDefined();
+    expect(orderReferences[0]).toBeDefined();
 
     await adminOrdersPage.goto();
     await expect(adminOrdersPage.rowByReference(orderReferences[0]!)).toBeVisible();

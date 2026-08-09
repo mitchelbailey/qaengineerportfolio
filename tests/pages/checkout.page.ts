@@ -8,11 +8,13 @@ export class CheckoutPage extends BasePage {
   readonly step3 = this.page.getByTestId('checkout-step-3');
 
   readonly emailInput = this.page.getByLabel('Email');
+  readonly emailError = this.page.locator('#email-error');
   readonly firstNameInput = this.page.getByLabel('First name');
   readonly lastNameInput = this.page.getByLabel('Last name');
   readonly phoneInput = this.page.getByLabel('Phone (optional)');
 
   readonly line1Input = this.page.getByLabel('Street address');
+  readonly line1Error = this.page.locator('#line1-error');
   readonly suburbInput = this.page.getByLabel('Suburb');
   readonly stateSelect = this.page.getByLabel('State');
   readonly postcodeInput = this.page.getByLabel('Postcode');
@@ -20,6 +22,7 @@ export class CheckoutPage extends BasePage {
   readonly expressShippingRadio = this.page.getByRole('radio', { name: /Express/ });
 
   readonly cardNameInput = this.page.getByLabel('Name on card');
+  readonly cardNameError = this.page.locator('#cardName-error');
   readonly cardNumberInput = this.page.getByLabel('Card number');
   readonly expiryInput = this.page.getByLabel('Expiry');
   readonly cvcInput = this.page.getByLabel('CVC');

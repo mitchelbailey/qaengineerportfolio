@@ -44,6 +44,7 @@ test.describe('WCAG 2.1 AA — checkout process', () => {
     await expect(checkoutPage.step1).toBeVisible();
     await expect(checkoutPage.step2).toBeHidden();
     await expect(checkoutPage.step3).toBeHidden();
+    await expect(checkoutPage.emailError).toBeHidden();
 
     await checkoutPage.fillCustomerDetails({
       email: 'invalidemail',
@@ -52,6 +53,8 @@ test.describe('WCAG 2.1 AA — checkout process', () => {
       phone: '123456',
     });
     await checkoutPage.continueButton.click();
+    await expect(checkoutPage.step1).toBeVisible();
+    await expect(checkoutPage.emailError).toBeVisible();
 
     const step1Results = await makeAxeBuilder().analyze();
     expect(step1Results.violations).toEqual([]);
@@ -64,12 +67,15 @@ test.describe('WCAG 2.1 AA — checkout process', () => {
     });
     await checkoutPage.continueButton.click();
 
+    await expect(checkoutPage.line1Error).toBeHidden();
     await expect(checkoutPage.step1).toBeHidden();
     await expect(checkoutPage.step2).toBeVisible();
     await expect(checkoutPage.step3).toBeHidden();
 
     // Process form submission to see errors
     await checkoutPage.continueButton.click();
+    await expect(checkoutPage.step2).toBeVisible();
+    await expect(checkoutPage.line1Error).toBeVisible();
 
     const step2Results = await makeAxeBuilder().analyze();
     expect(step2Results.violations).toEqual([]);
@@ -88,6 +94,8 @@ test.describe('WCAG 2.1 AA — checkout process', () => {
 
     // The credit form already shows validation errors before any user input, handle the click to force the errors in case that behaviour changes
     await checkoutPage.payButton.click();
+    await expect(checkoutPage.cardNameError).toBeVisible();
+    await expect(checkoutPage.step3).toBeVisible();
 
     const step3Results = await makeAxeBuilder().analyze();
     expect(step3Results.violations).toEqual([]);
