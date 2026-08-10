@@ -3,6 +3,11 @@ import { defineConfig, devices } from '@playwright/test';
 const PORT = 4173;
 const baseURL = process.env.BASE_URL ?? `http://localhost:${PORT}`;
 
+/* An explicit BASE_URL means "test something that is already running" — the
+   post-deploy smoke run in CI points at the live Worker. In that case there is
+   nothing to build and no server to start locally. */
+const targetsExternalDeployment = Boolean(process.env.BASE_URL);
+
 /**
  * Playwright configuration for Yarra & Co.
  *
@@ -102,10 +107,12 @@ export default defineConfig({
     },
   ],
 
-  webServer: {
-    command: 'npm run build && npm run preview',
-    url: `${baseURL}/api/health`,
-    reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
-  },
+  webServer: targetsExternalDeployment
+    ? undefined
+    : {
+        command: 'npm run build && npm run preview',
+        url: `${baseURL}/api/health`,
+        reuseExistingServer: !process.env.CI,
+        timeout: 180_000,
+      },
 });
