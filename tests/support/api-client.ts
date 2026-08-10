@@ -18,6 +18,8 @@ export async function readJson<T>(response: APIResponse): Promise<T> {
 export interface SeedOrderSpec {
   status?: OrderStatus;
   email?: string;
+  /** Epoch ms; defaults to now. Pin it for visual tests. */
+  placedAt?: number;
   items: Array<{ slug: string; quantity: number }>;
 }
 

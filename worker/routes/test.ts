@@ -62,6 +62,9 @@ const seedSchema = z.object({
       z.object({
         status: z.enum(ORDER_STATUSES).default('placed'),
         email: z.email().default('customer@example.com'),
+        // Epoch ms. Pin it when a test screenshots the rendered date — same
+        // reasoning as the fixed review dates in worker/routes/reviews.ts.
+        placedAt: z.int().optional(),
         items: z.array(z.object({ slug: z.string(), quantity: z.int().min(1) })).min(1),
       }),
     )
@@ -150,7 +153,7 @@ testRoutes.post('/seed', async (c) => {
             totals.gstCents,
             totals.totalCents,
             totals.itemCount,
-            now,
+            spec.placedAt ?? now,
           ),
       ];
 
