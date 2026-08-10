@@ -148,7 +148,7 @@ export function AdminOrders() {
                 {data.items.map((order) => (
                   <tr key={order.id} data-testid="admin-order-row" data-reference={order.reference}>
                     <td className="px-4 py-3 font-mono text-xs text-fg">{order.reference}</td>
-                    <td className="px-4 py-3 text-fg-muted">
+                    <td className="px-4 py-3 text-fg-muted tabular-nums">
                       <time dateTime={order.placedAt}>
                         {new Date(order.placedAt).toLocaleDateString('en-AU', {
                           day: 'numeric',

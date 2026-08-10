@@ -5,9 +5,20 @@ test.describe('admin orders page visual baselines', () => {
     await api.reset();
 
     await api.loginAsAdmin();
+
     const { orderReferences } = await api.seed({
-      orders: [{ items: [{ slug: 'brunswick-stoneware-mug', quantity: 1 }] }],
+      orders: [
+        {
+          // Pinned so the Placed column has a fixed width. A variable-width date
+          // resizes that column and shifts every column to its right — and `mask`
+          // hides pixels, not layout, so masking the date cannot fix it.
+          // Midday UTC so the rendered day is the same in any CI or dev timezone.
+          placedAt: Date.UTC(2026, 2, 14, 12),
+          items: [{ slug: 'brunswick-stoneware-mug', quantity: 1 }],
+        },
+      ],
     });
+
     expect(orderReferences[0]).toBeDefined();
 
     await adminOrdersPage.goto();
@@ -17,11 +28,7 @@ test.describe('admin orders page visual baselines', () => {
     await expect(page).toHaveScreenshot('admin-orders-desktop.png', {
       fullPage: true,
       // The reference id is non-deterministic, so hide it from the visual test
-      // Also mask the date for the same reason
-      mask: [
-        adminOrdersPage.rowByReference(orderReferences[0]!).locator('td').first(),
-        adminOrdersPage.rowByReference(orderReferences[0]!).locator('td').nth(1),
-      ],
+      mask: [adminOrdersPage.rowByReference(orderReferences[0]!).locator('td').first()],
     });
   });
 
