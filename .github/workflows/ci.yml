@@ -103,7 +103,7 @@ jobs:
         # Must run on failure — a failing shard is precisely the one whose
         # report someone needs to read.
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: blob-report-${{ matrix.shardIndex }}
           path: blob-report
@@ -111,7 +111,7 @@ jobs:
 
       - name: Upload failure artefacts
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results-${{ matrix.shardIndex }}
           # Traces, videos, and the actual/expected/diff PNGs from any failed
@@ -136,7 +136,7 @@ jobs:
       - run: npm ci
 
       - name: Download blob reports from all shards
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: all-blob-reports
           pattern: blob-report-*
@@ -146,7 +146,7 @@ jobs:
         run: npx playwright merge-reports --reporter html ./all-blob-reports
 
       - name: Upload HTML report as a workflow artefact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-html-report
           path: playwright-report
@@ -156,7 +156,7 @@ jobs:
       # reflects the state of main rather than whatever PR ran last.
       - name: Package the report for GitHub Pages
         if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: playwright-report
 
@@ -173,7 +173,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   deploy:
     name: Deploy Worker to Cloudflare
@@ -204,7 +204,7 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -238,7 +238,7 @@ jobs:
 
       - name: Upload smoke failure artefacts
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: smoke-test-results
           path: test-results
