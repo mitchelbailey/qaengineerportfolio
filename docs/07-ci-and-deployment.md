@@ -86,6 +86,14 @@ regenerated.
 Both platforms' baselines live in the repo, so `npm run test:visual` still
 works locally on Windows.
 
+**The baseline commit does not trigger CI.** GitHub refuses to start workflow
+runs from pushes authenticated with the default `GITHUB_TOKEN` — a recursion
+guard, and a sensible one. After the baseline workflow succeeds, start CI by
+hand from the Actions tab. This is why `deploy` and `publish-report` are gated
+on `github.event_name != 'pull_request'` rather than `== 'push'`: a manually
+started run has `event_name == 'workflow_dispatch'`, and gating on `push`
+would skip exactly the jobs a post-baseline run exists to perform.
+
 **Regenerating baselines is a review step, not a fix.** `--update-snapshots`
 will bless a genuine regression as the new truth just as happily as an intended
 redesign. That is the one way a visual suite can quietly stop testing anything,
