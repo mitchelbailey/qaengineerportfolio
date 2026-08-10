@@ -10,6 +10,7 @@ export class AdminOrdersPage extends BasePage {
   readonly detailTotal = this.page.getByTestId('order-detail-total');
   readonly statusActions = this.page.getByTestId('status-actions');
   readonly statusError = this.page.getByTestId('status-error');
+  readonly emptyOrders = this.page.getByText('No orders yet');
 
   async goto() {
     await this.page.goto('/admin/orders');

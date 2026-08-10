@@ -20,7 +20,7 @@ import { test, expect } from '../fixtures/test';
  */
 
 test.describe('visual baselines', () => {
-  test('VIS-01 | home page, light theme', async ({ page, api }) => {
+  test('VIS-001 | home page, light theme', async ({ page, api }) => {
     await api.reset();
     await page.goto('/');
     await page.getByRole('heading', { name: /Everyday objects/i }).waitFor();
@@ -28,7 +28,7 @@ test.describe('visual baselines', () => {
     await expect(page).toHaveScreenshot('home-light.png', { fullPage: true });
   });
 
-  test('VIS-02 | home page, dark theme', async ({ page, api }) => {
+  test('VIS-002 | home page, dark theme', async ({ page, api }) => {
     await api.reset();
     await page.goto('/');
     await page.getByRole('button', { name: /Switch to dark theme/ }).click();
@@ -37,7 +37,7 @@ test.describe('visual baselines', () => {
     await expect(page).toHaveScreenshot('home-dark.png', { fullPage: true });
   });
 
-  test('VIS-03 | product grid, light theme', async ({ productsPage, api, page }) => {
+  test('VIS-003 | product grid, light theme', async ({ productsPage, api, page }) => {
     await api.reset();
     await productsPage.goto();
     await productsPage.grid.waitFor();
@@ -45,7 +45,7 @@ test.describe('visual baselines', () => {
     await expect(page).toHaveScreenshot('products-light.png', { fullPage: true });
   });
 
-  test('VIS-04 | cart with items and a discount applied', async ({ api, cartPage, page }) => {
+  test('VIS-004 | cart with items and a discount applied', async ({ api, cartPage, page }) => {
     await api.reset();
     await api.addToCart('brunswick-stoneware-mug', 2);
     await cartPage.goto();
@@ -55,7 +55,7 @@ test.describe('visual baselines', () => {
     await expect(page).toHaveScreenshot('cart-with-discount.png', { fullPage: true });
   });
 
-  test('VIS-05 | product detail, mobile viewport', async ({ productDetailPage, api, page }) => {
+  test('VIS-005 | product detail, mobile viewport', async ({ productDetailPage, api, page }) => {
     await api.reset();
     await page.setViewportSize({ width: 390, height: 844 });
 
