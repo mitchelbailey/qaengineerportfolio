@@ -368,7 +368,7 @@ test.describe('GET /api/admin/orders', () => {
     const body = await readJson<ErrorResponse>(response);
     expect(body.error).toBe('validation_failed');
     expect(body.fieldErrors).toEqual({
-      status: ['\"invalid-status\" is not a valid status'],
+      status: ['"invalid-status" is not a valid status'],
     });
   });
 });
