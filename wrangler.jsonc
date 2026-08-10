@@ -4,24 +4,26 @@
   "main": "./worker/index.ts",
   "compatibility_date": "2026-07-01",
   "compatibility_flags": ["nodejs_compat"],
-
   // A single Worker serves both the React SPA and the /api routes.
   // `directory` is injected by @cloudflare/vite-plugin — do not set it here.
   "assets": {
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
   },
-
   "d1_databases": [
     {
+      // The worker reads this as `c.env.DB` in ~40 places, so the binding name
+      // is not free to change. `wrangler d1 create` suggests a binding derived
+      // from the database name; that suggestion has to be renamed to DB.
       "binding": "DB",
       "database_name": "yarra-co-db",
-      // Placeholder is fine for local dev (Miniflare uses a local SQLite file).
-      // Replace with the real ID from `wrangler d1 create yarra-co-db` before deploying.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      // Only used when deployed. Local dev and the Playwright suite ignore it
+      // and use Miniflare's local SQLite file, which is what keeps the suite
+      // hermetic — deliberately no `"remote": true` here, since that would
+      // point `npm run dev` and every test run at the production database.
+      "database_id": "89218578-3361-414c-9e46-a503789588bb",
     },
   ],
-
   "vars": {
     // Test-support endpoints under /api/test/*. Safe to leave on: every one of
     // them is scoped to the caller's own session and cannot touch anyone else's
@@ -33,11 +35,12 @@
     // Share of review-widget requests that fail, simulating a flaky third-party
     // embed. The suite intercepts this route rather than tolerating the failures.
     "FLAKY_WIDGET_FAILURE_RATE": "0.3",
-    // Development value only. Production overrides it with:
+    // AUTH_SECRET is deliberately *not* here. Anything under `vars` is uploaded
+    // verbatim by `wrangler deploy`, so leaving the HMAC signing key here would
+    // publish the key that mints admin tokens (worker/auth/token.ts). Local dev
+    // reads it from .dev.vars; production gets a real one via
     //   wrangler secret put AUTH_SECRET
-    "AUTH_SECRET": "dev-only-insecure-secret-do-not-use-in-production",
   },
-
   "observability": {
     "enabled": true,
   },
