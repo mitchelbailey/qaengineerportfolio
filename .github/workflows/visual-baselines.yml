@@ -17,6 +17,12 @@
 # Reviewing the commit is not optional. `--update-snapshots` will happily bless
 # a genuine regression as the new truth, which is the one way a visual suite
 # can quietly stop testing anything.
+#
+# The commit this pushes does NOT start a CI run. GitHub refuses to trigger
+# workflows from pushes authenticated with the default GITHUB_TOKEN, as a
+# recursion guard. So after this workflow succeeds, start CI by hand from the
+# Actions tab — which is why ci.yml's deploy and publish jobs are gated on
+# "not a pull request" rather than "is a push", so a manual run still deploys.
 name: Update Linux visual baselines
 
 on:
