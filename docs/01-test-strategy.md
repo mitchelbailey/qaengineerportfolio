@@ -102,6 +102,9 @@ WCAG 2.1 AA on every key page, plus the states people forget: a form showing a
 validation error, an open modal dialog, an empty cart, a 404. It found DEF-003 on
 its first ever run.
 
+Automated axe coverage does not establish complete WCAG conformance; manual keyboard, focus-order
+and assistive-technology testing would supplement it in a production testing programme.
+
 ### Visual — Playwright `toHaveScreenshot`
 
 `tests/visual/` — 14 baselines.

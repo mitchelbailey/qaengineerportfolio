@@ -55,6 +55,8 @@ condition is observable at all — without it, "the debounce settled and the
 fetch resolved" has no signal in the DOM to wait on, and a spec is left
 guessing.
 
+The generic settle helper can theoretically observe the previous settled state immediately after an interaction. Tests where ordering matters therefore use a web-first assertion/toPass()/expect.poll() against the specific expected result.
+
 ## Web-first assertions, always
 
 `expect(locator).toHaveText(x)` polls until it passes or times out.

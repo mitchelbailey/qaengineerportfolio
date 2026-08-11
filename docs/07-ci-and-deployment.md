@@ -41,7 +41,7 @@ report that only exists when everything passed is a trophy cabinet, not a
 diagnostic.
 
 **`deploy` needs `playwright`, so nothing ships that hasn't passed.** It's also
-gated on `github.event_name == 'push' && github.ref == 'refs/heads/main'`, so
+gated on `event is not a pull request + branch is main`, so
 a pull request never deploys.
 
 **`smoke` exists because passing against `vite preview` on a CI runner is not

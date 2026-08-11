@@ -34,10 +34,7 @@ regression baseline (`VIS-001`) that CI diffs every build against.</sub>
 **AI-assisted:** the application scaffold (React SPA, Hono Worker, D1 schema,
 styling), the Playwright infrastructure, and one worked example spec per suite type.
 
-**My work:** the product browsing, product detail, cart and API test suites; the
-defect investigations. The traceability IDs and QA documentation layer; and the assertion and reliability
-refinements throughout — including reworking selectors and waits against the policy
-in doc 06 after watching tests fail for the wrong reasons.
+**My work:** product browsing and product-detail E2E suites, 18 additional API tests, expansion of the accessibility and visual-regression coverage, smoke-test additions, defect investigation and documentation, and assertion/reliability improvements throughout.
 
 I'm a React developer moving into test engineering; building the target
 application is the part I already knew how to do, and testing it properly is the
@@ -50,7 +47,7 @@ part I built this repository to learn and to show.
 | **Layered test design** — the right check at the cheapest layer                | [`tests/`](tests/), [docs/01](docs/01-test-strategy.md)                                         |
 | **API contract testing** against Zod schemas shared with production code       | [`tests/api/`](tests/api/)                                                                      |
 | **Page Object Model** — locator-returning, no assertions inside                | [`tests/pages/cart.page.ts`](tests/pages/cart.page.ts)                                          |
-| **Flake control as policy, enforced by lint**                                  | [docs/08](docs/06-selector-and-flake-policy.md), [`eslint.config.js`](eslint.config.js)         |
+| **Flake control as policy, enforced by lint**                                  | [docs/06](docs/06-selector-and-flake-policy.md), [`eslint.config.js`](eslint.config.js)         |
 | **Accessibility testing** with `axe-core` (found a real WCAG failure)          | [`tests/a11y/`](tests/a11y/), [DEF-003](docs/05-defect-reports/DEF-003-accent-text-contrast.md) |
 | **Visual regression** with the cross-platform baseline problem actually solved | [`tests/visual/`](tests/visual/), [docs/07](docs/07-ci-and-deployment.md)                       |
 | **Defect investigation and written reports**                                   | [`docs/05-defect-reports/`](docs/05-defect-reports/)                                            |
@@ -112,8 +109,8 @@ That single decision buys:
 
 Tests import only from [`shared/`](shared/) — the Zod schemas and money/GST logic
 used by the app and the Worker too — and never from `app/` or `worker/` internals.
-That boundary is what keeps the suite a genuine black-box exercise of the running
-application rather than a restatement of its implementation.
+Tests execute the deployed application through its public UI/API surfaces while
+sharing only explicitly defined domain contracts from shared/.
 
 Tests also run against the **production build** (`vite preview`), not the dev server.
 No HMR client injecting itself into the page, no file watcher able to reload mid-test.
@@ -238,8 +235,8 @@ docs/      Test strategy, test cases, traceability matrix, defect reports, CI, f
 - **TypeScript 5.9, not 7.** TypeScript 7 is current, but `typescript-eslint@8`
   still declares `typescript <6.1.0` as a peer, and losing lint coverage on a repo
   whose entire point is engineering rigour is a bad trade.
-- **`ENABLE_TEST_API` stays on in production.** Every `/api/test/*` endpoint is
-  scoped to the caller's own session, so it exposes nothing — and leaving it on is
-  what lets the post-deploy smoke job seed the data it needs against the live site.
+- **`ENABLE_TEST_API`** remains enabled for this disposable public demo so post-deployment
+  smoke tests can seed isolated session data. In a real production system these endpoints
+  would be disabled, removed or separately protected.
 
 — **Mitchel Bailey**, Melbourne · [github.com/mitchelbailey](https://github.com/mitchelbailey)

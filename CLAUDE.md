@@ -55,8 +55,7 @@ see the top comment in `playwright.config.ts` for why.
   safe with zero test cleanup — no shared database state, no serial mode.
 - **`shared/`** holds Zod schemas and domain logic imported by the app, the
   Worker, _and_ the test suite. Tests import only from `shared/`, never from
-  `app/` or `worker/` internals — that boundary is what keeps the suite a
-  genuine black-box exercise of the running app.
+  `app/` or `worker/` internals.
 - **Test-support endpoints** live at `/api/test/*` (`worker/routes/test.ts`),
   gated by `ENABLE_TEST_API`, scoped to the caller's own session. `ApiClient`
   in `tests/support/api-client.ts` wraps them — `reset()`, `seed()`, `state()`,

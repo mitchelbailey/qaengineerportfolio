@@ -13,14 +13,18 @@ again.
 
 |                                           | Count                                     |
 | ----------------------------------------- | ----------------------------------------- |
-| Requirements                              | 26                                        |
-| Requirements with automated coverage      | 26 (100%)                                 |
+| Requirements                              | 29                                        |
+| Fully Covered                             | 28                                        |
+| Partially Covered                         | 1 (REQ-05 / DEF-004)                      |
 | Automated cases                           | 78 (`TC` × 64, `VIS` × 14)                |
 | Active                                    | 77                                        |
 | Skipped pending a defect                  | 1 (`TC-022` → DEF-004)                    |
 | Executions per CI run                     | 144 (E2E cases run on 4 browser projects) |
 | Unit/component tests (untraced by design) | 22                                        |
 
+Requirements: 29
+Fully covered: 28
+Partially covered: 1 (REQ-05 / DEF-004)
 ---
 
 ## 1. Product catalogue and browsing

@@ -215,7 +215,7 @@ test.describe('POST /api/admin/products', () => {
 });
 
 test.describe('POST /api/admin/products/:id/image', () => {
-  test("TC-051 | uploading a valid image sets the product's image, reflected on the next GET", async ({
+  test('TC-051 | uploading an allowed PNG MIME type sets the product image, reflected on the next GET', async ({
     api,
   }) => {
     await api.reset();
