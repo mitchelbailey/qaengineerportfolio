@@ -10,6 +10,7 @@ import { AdminLoginPage } from '../pages/admin-login.page';
 import { AdminProductsPage } from '../pages/admin-products.page';
 import { AdminOrdersPage } from '../pages/admin-orders.page';
 import { NotFoundPage } from '@tests/pages/not-found.page';
+import { StoreFrontPage } from '@tests/pages/storefront.page';
 
 interface Fixtures {
   /**
@@ -30,6 +31,7 @@ interface Fixtures {
   adminOrdersPage: AdminOrdersPage;
 
   notFoundPage: NotFoundPage;
+  storeFrontPage: StoreFrontPage;
   /**
    * A `page` already signed in as the seeded admin/viewer account, via the API
    * rather than the UI.
@@ -78,6 +80,9 @@ export const test = base.extend<Fixtures>({
   },
   notFoundPage: async ({ page }, use) => {
     await use(new NotFoundPage(page));
+  },
+  storeFrontPage: async ({ page }, use) => {
+    await use(new StoreFrontPage(page));
   },
   adminPage: async ({ page, api }, use) => {
     await api.loginAsAdmin();

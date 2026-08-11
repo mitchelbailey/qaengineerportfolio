@@ -12,7 +12,7 @@ test.describe('browse products', () => {
     return (await slugsInDisplayOrder(productsPage)).sort();
   }
 
-  test('TC-020 | searching narrows the grid to matching products and updates the result count', async ({
+  test('TC-020 | searching narrows the grid to matching products and updates the result count @smoke', async ({
     api,
     productsPage,
   }) => {

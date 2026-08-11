@@ -44,7 +44,7 @@ test.describe('product detail', () => {
     expect(outOfStock!.stock).toEqual(0);
   });
 
-  test('TC-029 | adding a quantity greater than 1 adds that many units to the cart', async ({
+  test('TC-029 | adding a quantity greater than 1 adds that many units to the cart @smoke', async ({
     api,
     productDetailPage,
     cartPage,
@@ -106,5 +106,26 @@ test.describe('product detail', () => {
     await expect(productDetailPage.reviewsError).toBeHidden();
     await expect(productDetailPage.reviews.first()).toBeVisible();
     expect(requestCount).toEqual(3);
+  });
+
+  test('TC-033 | a product URL loads on a cold hit and survives a reload @smoke', async ({
+    api,
+    productDetailPage,
+    page,
+  }) => {
+    await api.reset();
+
+    const productSlug = 'thornbury-burr-grinder';
+    const seedProduct = SEED_PRODUCTS.find((p) => p.slug === productSlug);
+    expect(seedProduct).toBeDefined();
+
+    await productDetailPage.goto(productSlug);
+    await expect(productDetailPage.heading).toHaveText(seedProduct!.name);
+    await expect(productDetailPage.addToCartButton).toBeVisible();
+
+    await page.reload();
+
+    await expect(productDetailPage.heading).toHaveText(seedProduct!.name);
+    await expect(productDetailPage.addToCartButton).toBeVisible();
   });
 });

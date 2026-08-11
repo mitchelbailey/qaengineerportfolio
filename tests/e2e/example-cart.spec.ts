@@ -16,8 +16,8 @@ import { test, expect } from '../fixtures/test';
  *     testing the number.
  */
 
-test.describe('cart pricing @smoke', () => {
-  test('TC-014 | subtotal, shipping and GST reflect the cart contents', async ({ api, cartPage }) => {
+test.describe('cart pricing', () => {
+  test('TC-014 | subtotal, shipping and GST reflect the cart contents @smoke', async ({ api, cartPage }) => {
     await api.reset();
     await api.addToCart('brunswick-stoneware-mug', 2); // 2 x $42.00 = $84.00
 
@@ -32,7 +32,10 @@ test.describe('cart pricing @smoke', () => {
     await expect(cartPage.gst).toHaveText('$8.81');
   });
 
-  test('TC-015 | a promo code discounts the subtotal and updates the total', async ({ api, cartPage }) => {
+  test('TC-015 | a promo code discounts the subtotal and updates the total @smoke', async ({
+    api,
+    cartPage,
+  }) => {
     await api.reset();
     await api.addToCart('brunswick-stoneware-mug', 2); // $84.00
 
@@ -95,7 +98,11 @@ test.describe('cart pricing @smoke', () => {
     await expect(cartPage.shipping).toHaveText('$12.95');
   });
 
-  test('TC-019 | removing the last item shows the empty cart state', async ({ api, cartPage, page }) => {
+  test('TC-019 | removing the last item shows the empty cart state @smoke', async ({
+    api,
+    cartPage,
+    page,
+  }) => {
     await api.reset();
     await api.addToCart('brunswick-stoneware-mug', 1);
 
