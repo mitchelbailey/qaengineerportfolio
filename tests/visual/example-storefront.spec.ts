@@ -16,7 +16,7 @@ import { test, expect } from '../fixtures/test';
  * Baselines are platform-specific — Playwright renders fonts differently per
  * OS. Generate and commit them from Linux (the official Docker image) so they
  * match what CI will compare against; see `npm run test:visual:update` and
- * docs/07-lessons-and-scaling.md.
+ * docs/07-ci-and-deployment.md.
  */
 
 test.describe('visual baselines', () => {
