@@ -44,7 +44,7 @@ test.describe('product detail', () => {
     expect(outOfStock!.stock).toEqual(0);
   });
 
-  test('TC-029 | adding a quantity greater than 1 adds that many units to the cart @smoke', async ({
+  test('TC-029 | adding a quantity greater than 1 adds that many units to the cart', async ({
     api,
     productDetailPage,
     cartPage,
@@ -57,6 +57,12 @@ test.describe('product detail', () => {
     await productDetailPage.increaseQuantityButton.click();
     await productDetailPage.increaseQuantityButton.click();
     await productDetailPage.addToCartButton.click();
+
+    // The click resolves when the click is dispatched, not when the mutation
+    // settles. The toast is rendered from the mutation's onSuccess, so it is the
+    // first moment the server has actually accepted the write — without it,
+    // cartPage.goto() can navigate out from under the in-flight POST.
+    await expect(productDetailPage.addedToCartToast).toBeVisible();
 
     await cartPage.goto();
     await expect(cartPage.quantityFor(productSlug)).toHaveText('3');

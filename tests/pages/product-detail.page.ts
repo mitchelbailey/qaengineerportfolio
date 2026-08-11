@@ -8,6 +8,7 @@ export class ProductDetailPage extends BasePage {
   readonly increaseQuantityButton = this.page.getByRole('button', { name: 'Increase quantity' });
   readonly decreaseQuantityButton = this.page.getByRole('button', { name: 'Decrease quantity' });
   readonly quantity = this.page.getByRole('status', { name: 'Quantity' });
+  readonly addedToCartToast = this.page.locator('[data-testid="toast"][data-variant="success"]');
 
   readonly reviewsPanel = this.page.getByTestId('reviews-panel');
   readonly reviews = this.page.getByTestId('review');
