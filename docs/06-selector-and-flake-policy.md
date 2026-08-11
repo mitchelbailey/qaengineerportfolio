@@ -150,7 +150,7 @@ drift `shared/cart-math.ts` exists to make impossible in the first place.
 
 ## Layout stability is a correctness property, not a cosmetic one
 
-DEF-002 (`docs/06-defect-reports`) was a real button click silently swallowed
+DEF-002 (`docs/05-defect-reports`) was a real button click silently swallowed
 because a validation error's removal collapsed 22px out of the layout,
 carrying the button out from under the pointer between mousedown and mouseup.
 The natural-looking "fixes" — a wait, a retry, `{ force: true }` — would all

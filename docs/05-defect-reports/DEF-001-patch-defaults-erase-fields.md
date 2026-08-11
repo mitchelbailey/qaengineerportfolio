@@ -115,7 +115,7 @@ export const adminProductUpdateSchema = z.object(productFields).partial();
 
 ## Regression coverage
 
-Automated in the API suite (see `docs/05-traceability-matrix.md`):
+Automated in the API suite (see `docs/04-traceability-matrix.md`):
 
 - **TC-042** — a price-only `PATCH` leaves `featured`, `material` and
   `dimensions` untouched.

@@ -99,7 +99,7 @@ interface FieldProps {
  *
  * The message row always occupies one line of space, whether or not there is a
  * message in it. That is not cosmetic — see
- * docs/06-defect-reports/DEF-002-validation-layout-shift-swallows-click.md.
+ * docs/05-defect-reports/DEF-002-validation-layout-shift-swallows-click.md.
  * Removing an error on blur used to collapse the row and pull every control
  * below it upwards mid-click, so the button the user was aiming at moved out
  * from under the pointer and the first click did nothing.

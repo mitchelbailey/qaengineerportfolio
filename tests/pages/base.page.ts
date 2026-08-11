@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 /**
  * Every page object in this suite follows the same shape, decided after
  * running the same cart spec both ways against the live app (see the project
- * history / docs/08-selector-and-flake-policy.md for the comparison):
+ * history / docs/06-selector-and-flake-policy.md for the comparison):
  *
  *   - Locators are readonly properties, built once in the constructor.
  *   - Methods are for genuine multi-step *interactions* only

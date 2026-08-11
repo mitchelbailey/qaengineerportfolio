@@ -27,7 +27,7 @@
   "vars": {
     // Test-support endpoints under /api/test/*. Safe to leave on: every one of
     // them is scoped to the caller's own session and cannot touch anyone else's
-    // data. See docs/01-test-strategy.md.
+    // data. See docs/02-test-environments-and-data.md.
     "ENABLE_TEST_API": "true",
     // Artificial latency (ms) applied to API responses so loading states are
     // real and worth testing. Set to 0 to disable.

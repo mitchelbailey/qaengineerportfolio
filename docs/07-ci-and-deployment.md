@@ -153,7 +153,7 @@ D1 needs no migration step in the pipeline. `ensureSchema` runs at the top of
 the session middleware on every API request, so a freshly created database
 bootstraps itself on first hit. The catalog is seeded per session, not globally,
 which is the same mechanism that makes `fullyParallel: true` safe — see
-`docs/08-selector-and-flake-policy.md`.
+`docs/06-selector-and-flake-policy.md`.
 
 ### One-time setup
 

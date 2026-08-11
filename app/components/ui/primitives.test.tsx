@@ -8,7 +8,7 @@ import { Field, Input, QuantityStepper } from './primitives';
  * WORKED EXAMPLE — component tests, the base of the pyramid.
  *
  * These run in jsdom, not a real browser: fast, but with no real layout. That
- * is exactly why DEF-002 (docs/06-defect-reports) was invisible here — jsdom
+ * is exactly why DEF-002 (docs/05-defect-reports) was invisible here — jsdom
  * has no geometry, so a click can never be "missed" the way it was in a real
  * browser. Component tests are for logic and accessible structure: does the
  * stepper clamp correctly, is the error associated with its field. They are

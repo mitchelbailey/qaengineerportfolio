@@ -43,7 +43,7 @@ export default tseslint.config(
 
   /**
    * Test-suite rules. These are the automation-quality guardrails from
-   * docs/08-selector-and-flake-policy.md, machine-enforced: a hard-coded wait or
+   * docs/06-selector-and-flake-policy.md, machine-enforced: a hard-coded wait or
    * a conditional assertion fails the build rather than quietly rotting the suite.
    */
   {

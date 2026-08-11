@@ -16,14 +16,14 @@ not authoring. Phases 7 (CI/hosting) and 8 (QA docs layer) are not started.
 
 ## Before doing anything else
 
-Read `docs/08-selector-and-flake-policy.md`. It is short and every rule in it
+Read `docs/06-selector-and-flake-policy.md`. It is short and every rule in it
 came from something that actually broke while building this repo — selector
 priority, why hard waits are lint-banned, `page.request` vs the bare `request`
 fixture (a real bug hit while writing the first example spec), and why the
 POM is locator-returning (decided by running the same spec both ways, not by
 opinion — the comparison and both failure traces are in that doc).
 
-Then skim `docs/06-defect-reports/` — three real defects were found and fixed
+Then skim `docs/05-defect-reports/` — three real defects were found and fixed
 while building this (DEF-001: Zod `.partial()` doesn't suppress `.default()`,
 silently erasing fields on PATCH; DEF-002: a validation error clearing on blur
 collapsed 22px and moved a button out from under the pointer mid-click;

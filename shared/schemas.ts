@@ -141,7 +141,7 @@ export const loginSchema = z.object({
  * `.default()`, so a PATCH carrying only `{ priceCents }` still parsed as
  * `{ priceCents, featured: false, material: '', dimensions: '' }` and silently
  * erased three fields the caller never mentioned. See
- * docs/06-defect-reports/DEF-001-patch-defaults-erase-fields.md.
+ * docs/05-defect-reports/DEF-001-patch-defaults-erase-fields.md.
  */
 const productFields = {
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(120),

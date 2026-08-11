@@ -92,7 +92,7 @@ message appears or disappears:
 
 ## Regression coverage
 
-Automated in the E2E suite (see `docs/05-traceability-matrix.md`):
+Automated in the E2E suite (see `docs/04-traceability-matrix.md`):
 
 - **TC-021** — with an error displayed, correcting the field and clicking
   Continue **once** advances to step 2.
