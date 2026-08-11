@@ -91,7 +91,7 @@ scanned surfaces rather than duplicated per feature.
 
 Coverage deliberately includes the states that regress unnoticed: a form
 **displaying an error** (TC-062, TC-065), an **open modal** (TC-039, TC-068), an
-**empty collection** (TC-067), and the **404** (TC-069). 
+**empty collection** (TC-067), and the **404** (TC-069).
 
 ## 8. Visual consistency (cross-cutting)
 
